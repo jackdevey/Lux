@@ -12,3 +12,4 @@
 *.out
 .idea/modules.xml
 .idea/Lux.iml
+.idea/vcs.xml
