@@ -1,38 +1,13 @@
 on: [push, pull_request]
-name: Tests
+
+name: My cool Action
 jobs:
-  build:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
-
+  checks:
+    name: run
+    runs-on: [ubuntu-latest, windows-latest, macos-latest]
     steps:
-      - name: Set up Go 1.15
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.15
+    - name: Checkout Code
+    - uses: actions/checkout@master
 
-      - name: Check out code
-        uses: actions/checkout@v2
-        
-      - name: Build
-        run: go build -v ./cmd/Lux
-
-  build-minimum:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Set up Go 1.13
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.13
-
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: Build
-        env:
-          CGO_ENABLED: '0'
-        run: go build -v ./cmd/Lux
+    - name: Run
+      uses: cedrickring/golang-action@1.6.0
