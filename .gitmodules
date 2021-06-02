@@ -1,9 +1,9 @@
 [submodule "color"]
-	path = color
+	path = pkg/fatih/color
 	url = https://github.com/fatih/color
 [submodule "go-isatty"]
-	path = go-isatty
+	path = pkg/mattn/go-isatty
 	url = https://github.com/mattn/go-isatty
 [submodule "go-colorable"]
-	path = go-colorable
+	path = pkg/mattn/go-colorable
 	url = https://github.com/mattn/go-colorable
