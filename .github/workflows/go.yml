@@ -6,7 +6,6 @@ jobs:
     runs-on: [ubuntu-latest, windows-latest, macos-latest]
     steps:
     - name: Checkout Code
-    - uses: actions/checkout@master
-
+      uses: actions/checkout@master
     - name: Run Lux
       uses: cedrickring/golang-action@1.6.0
