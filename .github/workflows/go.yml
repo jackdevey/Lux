@@ -41,4 +41,4 @@ jobs:
       - name: Build
         env:
           CGO_ENABLED: '0'
-        run: go build -v ./cmd/gh
+        run: go build -v cmd/Lux
