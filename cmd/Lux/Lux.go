@@ -20,13 +20,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package main
 
-// Convert a Boolean to a string. Makes
-// boolean values more readable to a user.
-// When true outputs Yes.
-func boolToString(b bool) string {
-	if b {
-		return "Yes"
-	}else {
-		return "No"
-	}
+import (
+	"internal/structs"
+	"os"
+)
+
+// This is temporary while testing things
+func main() {
+
+	// Create a Connection object and set
+	// the key & url of the session.
+	var connection structs.Connection
+	connection.Key = os.Getenv("GOVEE_API_KEY")
+	connection.Url = "https://developer-api.govee.com/"
+
+	// List the user's devices in a simple
+	// way.
+	var devices structs.Devices
+	devices.Get(connection)
+	devices.ComplexList()
 }
+

@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package main
+package structs
 
 import (
 	"io"
@@ -30,8 +30,8 @@ import (
 // as the user's API Key & the server URL.
 type Connection struct {
 	http http.Client
-	key string
-	url string
+	Key  string
+	Url  string
 }
 
 // Makes a GET request to the API server
@@ -39,8 +39,8 @@ type Connection struct {
 // Usually a JSON object is returned in
 // byte array form to help with parsing.
 func (c Connection) get(path string) []byte {
-	request, _ := http.NewRequest("GET", c.url + path, nil)
-	request.Header.Set("Govee-API-Key", c.key)
+	request, _ := http.NewRequest("GET", c.Url+ path, nil)
+	request.Header.Set("Govee-API-Key", c.Key)
 	response, err := c.http.Do(request)
 
 	if err != nil {

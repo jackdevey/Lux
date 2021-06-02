@@ -18,23 +18,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package main
+package general
 
-import "os"
-
-// This is temporary while testing things
-func main() {
-
-	// Create a Connection object and set
-	// the key & url of the session.
-	var connection Connection
-	connection.key = os.Getenv("GOVEE_API_KEY")
-	connection.url = "https://developer-api.govee.com/"
-
-	// List the user's devices in a simple
-	// way.
-	var devices Devices
-	devices.get(connection)
-	devices.simpleList()
+// BoolToString converts a Boolean to a
+// string. Makes boolean values more readable
+// to a user. When true outputs Yes.
+func BoolToString(b bool) string {
+	if b {
+		return "Yes"
+	}else {
+		return "No"
+	}
 }
-

@@ -18,11 +18,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
  */
 
-package main
+package structs
 
 import (
 	"encoding/json"
+	"internal/general"
 	"strconv"
+	"strings"
 )
 
 // Devices struct maps to the Govee Api
@@ -53,27 +55,46 @@ type Device struct {
 	Name string `json:"deviceName"`
 	Controllable bool `json:"controllable"`
 	Retrievable bool `json:"retrievable"`
-	Commands [4]string `json:"supportCmds"`
+	Commands []string `json:"supportCmds"`
 }
 
-// Fills an empty Devices object with information
+// Get Fills an empty Devices object with information
 // provided from Govee's API using the Connection
 // that must be passed as a parameter.
-func (d *Devices) get(c Connection) {
+func (d *Devices) Get(c Connection) {
 	err := json.Unmarshal(c.get("v1/devices"), &d)
 	if err != nil { println("Error while parsing devices object") }
 }
 
-// Prints a simple list of Device's to the terminal
-// the list includes the name, model and if the
-// device is controllable or not by this app.
-func (d *Devices) simpleList() {
+// SimpleList prints a simple list of Device's to
+// the terminal, the list includes the name,
+// model and if the device is controllable or
+// not by this app.
+func (d *Devices) SimpleList() {
 	for i := 0; i < len(d.Data.Devices); i++ {
 		var device = d.Data.Devices[i]
 		println(strconv.Itoa(i) + " {")
 		println("   Name: " + device.Name)
 		println("   Model: " + device.Model)
-		println("   Controllable: " + boolToString(device.Controllable))
+		println("   Controllable: " + general.BoolToString(device.Controllable))
+		println("}")
+	}
+}
+
+// ComplexList outputs the User's devices in a
+// nice but complex way. It pretty much dumps
+// everything the app knows about their device
+// to the console.
+func (d *Devices) ComplexList() {
+	for i := 0; i < len(d.Data.Devices); i++ {
+		var device = d.Data.Devices[i]
+		println(strconv.Itoa(i) + " {")
+		println("   Mac Address: " + device.MAC)
+		println("   Model: " + device.Model)
+		println("   Name: " + device.Name)
+		println("   Controllable: " + general.BoolToString(device.Controllable))
+		println("   Retrievable: " + general.BoolToString(device.Retrievable))
+		println("   Commands: " + strings.Join(device.Commands, ", "))
 		println("}")
 	}
 }
