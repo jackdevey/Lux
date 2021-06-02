@@ -1,0 +1,63 @@
+/**
+
+Lux
+Copyright (C) 2021  BanDev
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+*/
+
+package design
+
+import (
+	"internal/general"
+	"pkg/fatih/color"
+)
+
+// PrintHeading prints text in a unified heading
+// format.
+func PrintHeading(s string, c color.Attribute) {
+	d := color.New(c, color.Bold)
+	_, _ = d.Println(s)
+}
+
+// PrintStringParagraph prints text in a unified paragraph
+// format taking into account grid spacing.
+func PrintStringParagraph(s1 string, s2 string, c1 color.Attribute) {
+	d1 := color.New(c1)
+	_, _ = d1.Print("  " + s1)
+	_, _ = d1.Print(GridSpacing(s1) + s2)
+	print("\r\n")
+}
+
+// PrintBoolParagraph is very specific function for
+// printing in a format like X: [ YES / NO ]
+func PrintBoolParagraph(s1 string, c1 color.Attribute, yes bool) {
+	d1 := color.New(c1)
+	_, _ = d1.Print("  " + s1)
+	var c2 = color.FgRed
+	if yes { c2 = color.FgGreen }
+	d2 := color.New(c2)
+	_, _ = d2.Print(GridSpacing(s1) + general.BoolToString(yes))
+	print("\r\n")
+}
+
+// GridSpacing calculates & prints spaces in order
+// to make grid style print statements.
+func GridSpacing(s1 string) string {
+	var str = ""
+	var spacing = 15 - len(s1)
+	for i := 0; i <= spacing; i++ { str += " " }
+	return str
+}

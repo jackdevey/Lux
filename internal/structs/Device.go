@@ -22,7 +22,8 @@ package structs
 
 import (
 	"encoding/json"
-	"internal/general"
+	"internal/design"
+	"pkg/fatih/color"
 	"strconv"
 	"strings"
 )
@@ -62,7 +63,7 @@ type Device struct {
 // provided from Govee's API using the Connection
 // that must be passed as a parameter.
 func (d *Devices) Get(c Connection) {
-	err := json.Unmarshal(c.get("v1/devices"), &d)
+	err := json.Unmarshal(c.Get("v1/devices"), &d)
 	if err != nil { println("Error while parsing devices object") }
 }
 
@@ -73,11 +74,10 @@ func (d *Devices) Get(c Connection) {
 func (d *Devices) SimpleList() {
 	for i := 0; i < len(d.Data.Devices); i++ {
 		var device = d.Data.Devices[i]
-		println(strconv.Itoa(i) + " {")
-		println("   Name: " + device.Name)
-		println("   Model: " + device.Model)
-		println("   Controllable: " + general.BoolToString(device.Controllable))
-		println("}")
+		design.PrintHeading("DEVICE " + strconv.Itoa(i), color.FgWhite)
+		design.PrintStringParagraph("Name:", device.Name, color.FgWhite)
+		design.PrintStringParagraph("Model:", device.Model, color.FgWhite)
+		design.PrintBoolParagraph("Controllable: ", color.FgWhite, device.Controllable)
 	}
 }
 
@@ -88,13 +88,14 @@ func (d *Devices) SimpleList() {
 func (d *Devices) ComplexList() {
 	for i := 0; i < len(d.Data.Devices); i++ {
 		var device = d.Data.Devices[i]
-		println(strconv.Itoa(i) + " {")
-		println("   Mac Address: " + device.MAC)
-		println("   Model: " + device.Model)
-		println("   Name: " + device.Name)
-		println("   Controllable: " + general.BoolToString(device.Controllable))
-		println("   Retrievable: " + general.BoolToString(device.Retrievable))
-		println("   Commands: " + strings.Join(device.Commands, ", "))
-		println("}")
+		design.PrintHeading("DEVICE " + strconv.Itoa(i), color.FgWhite)
+		design.PrintStringParagraph("MAC Address:", device.MAC, color.FgWhite)
+		design.PrintStringParagraph("Model:", device.Model, color.FgWhite)
+		design.PrintStringParagraph("Name:", device.Name, color.FgWhite)
+
+		design.PrintBoolParagraph("Controllable: ", color.FgWhite, device.Controllable)
+		design.PrintBoolParagraph("Retrievable: ", color.FgWhite, device.Controllable)
+
+		design.PrintStringParagraph("Commands:", strings.Join(device.Commands, ", "), color.FgWhite)
 	}
 }

@@ -34,12 +34,29 @@ type Connection struct {
 	Url  string
 }
 
-// Makes a GET request to the API server
+// Get makes a GET request to the API server
 // with the path provided as a string.
 // Usually a JSON object is returned in
 // byte array form to help with parsing.
-func (c Connection) get(path string) []byte {
-	request, _ := http.NewRequest("GET", c.Url+ path, nil)
+func (c Connection) Get(path string) []byte {
+	request, _ := http.NewRequest("GET", c.Url + path, nil)
+	request.Header.Set("Govee-API-Key", c.Key)
+	response, err := c.http.Do(request)
+
+	if err != nil {
+		println("Error making request to Govee")
+		return []byte("")
+	}else if response != nil {
+		body, _ := io.ReadAll(response.Body)
+		return body
+	}else {
+		println("Something bad happened :(")
+		return []byte("")
+	}
+}
+
+func (c Connection) Put(path string) []byte {
+	request, _ := http.NewRequest("PUT", c.Url + path, nil)
 	request.Header.Set("Govee-API-Key", c.Key)
 	response, err := c.http.Do(request)
 

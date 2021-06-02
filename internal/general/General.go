@@ -25,8 +25,8 @@ package general
 // to a user. When true outputs Yes.
 func BoolToString(b bool) string {
 	if b {
-		return "Yes"
+		return "[✓ Yes]"
 	}else {
-		return "No"
+		return "[✗ No]"
 	}
 }
