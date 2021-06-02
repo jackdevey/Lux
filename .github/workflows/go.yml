@@ -1,6 +1,5 @@
 on: [push, pull_request]
-
-name: My cool Action
+name: Tests
 jobs:
   checks:
     name: run
@@ -9,5 +8,5 @@ jobs:
     - name: Checkout Code
     - uses: actions/checkout@master
 
-    - name: Run
+    - name: Run Lux
       uses: cedrickring/golang-action@1.6.0
