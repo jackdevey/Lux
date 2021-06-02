@@ -21,9 +21,9 @@ jobs:
         go-version: 1.16.4
 
     - name: Build
-      run: go build -v ./...
+      run: go build -v src/
       env:
         GOPATH: /home/runner/work/Lux/Lux
           
     - name: Test
-      run: go test -v ./...
+      run: go test -v src/
