@@ -23,7 +23,7 @@ jobs:
     - name: Build
       run: go build -v ./...
       env:
-        GOPATH: /home/runner/work/Lux
+        GOPATH: /home/runner/work/Lux/Lux
           
     - name: Test
       run: go test -v ./...
