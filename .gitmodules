@@ -1,0 +1,9 @@
+[submodule "color"]
+	path = color
+	url = https://github.com/fatih/color
+[submodule "go-isatty"]
+	path = go-isatty
+	url = https://github.com/mattn/go-isatty
+[submodule "go-colorable"]
+	path = go-colorable
+	url = https://github.com/mattn/go-colorable
