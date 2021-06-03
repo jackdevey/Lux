@@ -1,10 +1,10 @@
-[submodule "color"]
+[submodule "pkg/fatih/color"]
 	path = pkg/fatih/color
 	url = https://github.com/fatih/color.git
-[submodule "go-isatty"]
+[submodule "pkg/mattn/go-isatty"]
 	path = pkg/mattn/go-isatty
 	url = https://github.com/mattn/go-isatty.git
-[submodule "go-colorable"]
+[submodule "pkg/mattn/go-colorable"]
 	path = pkg/mattn/go-colorable
 	url = https://github.com/mattn/go-colorable.git
 [submodule "pkg/jsonparser"]
