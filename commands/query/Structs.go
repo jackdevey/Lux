@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package query
 
 import (
+	"commands/devices"
 	"internal/general"
 	"internal/structs"
 	"pkg/jsonparser"
@@ -40,7 +41,7 @@ type Query struct {
 // Fill fills a Query struct with
 // the data returned from Govee with
 // the parameter of a Device struct.
-func (q *Query) Fill(c structs.Connection, d structs.Device) {
+func (q *Query) Fill(c structs.Connection, d devices.Device) {
 	var r = c.Get("v1/devices/state?device=" + d.MAC + "&model=" + d.Model)
 	q.Device, _ = jsonparser.GetString(r, "data", "device")
 	q.Model, _ = jsonparser.GetString(r, "data", "model")

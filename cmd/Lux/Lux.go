@@ -21,42 +21,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package main
 
 import (
-	"internal/design"
-	"internal/query"
-	"internal/structs"
+	"commands/devices"
+	"commands/query"
 	"os"
-	"pkg/color"
 )
 
-var connection structs.Connection
-
-// This is temporary while testing things
+// main is the command that is first
+// run. It determines where to send the
+// user based on what the arguments are.
 func main() {
-
-	connection.Key = os.Getenv("GOVEE_API_KEY")
-	connection.Url = "https://developer-api.govee.com/"
-
+	// Decide what part of the cli to run
 	switch os.Args[1] {
-		case "devices": Devices(); break
+		case "devices": devices.Entry(os.Args); break
 		case "query": query.Entry(os.Args); break
-	}
-
-}
-
-// Devices checks the second arguments given
-// and then returns a list of either simple
-// or complex devices.
-func Devices() {
-	var command string
-	if len(os.Args) > 2 { command = os.Args[2] } else { command = "simple" }
-	var devices structs.Devices
-	devices.Get(connection)
-	if command == "complex" {
-		devices.ComplexList()
-	}else if command == "simple" {
-		devices.SimpleList()
-	}else {
-		design.PrintHeading("Unknown command '" + command + "' for devices", color.FgRed)
 	}
 }
 

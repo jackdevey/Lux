@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package query
 
 import (
+	"commands/devices"
 	"internal/design"
 	"internal/structs"
 	"os"
@@ -46,7 +47,7 @@ func Entry(args []string) {
 	c.Url = "https://developer-api.govee.com/"
 
 	// Get a list of devices owned by the user
-	var ds structs.Devices
+	var ds devices.Devices
 	ds.Get(c)
 
 	// Check dId provided is valid

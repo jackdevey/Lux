@@ -18,11 +18,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
  */
 
-package structs
+package devices
 
 import (
 	"encoding/json"
 	"internal/design"
+	"internal/structs"
 	"pkg/color"
 	"strconv"
 	"strings"
@@ -33,9 +34,9 @@ import (
 // is a list of all the Device's that
 // belong to an authenticated user.
 type Devices struct {
-	Data Data `json:"data"`
+	Data    Data   `json:"data"`
 	Message string `json:"message"`
-	Status int `json:"status"`
+	Status  int    `json:"status"`
 }
 
 // Data struct is so annoying but necessary
@@ -62,7 +63,7 @@ type Device struct {
 // Get Fills an empty Devices object with information
 // provided from Govee's API using the Connection
 // that must be passed as a parameter.
-func (d *Devices) Get(c Connection) {
+func (d *Devices) Get(c structs.Connection) {
 	err := json.Unmarshal(c.Get("v1/devices"), &d)
 	if err != nil { println("Error while parsing devices object") }
 }
