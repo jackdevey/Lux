@@ -23,7 +23,7 @@ package structs
 import (
 	"encoding/json"
 	"internal/design"
-	"pkg/fatih/color"
+	"pkg/color"
 	"strconv"
 	"strings"
 )

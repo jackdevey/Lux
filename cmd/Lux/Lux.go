@@ -25,7 +25,7 @@ import (
 	"internal/query"
 	"internal/structs"
 	"os"
-	"pkg/fatih/color"
+	"pkg/color"
 )
 
 var connection structs.Connection

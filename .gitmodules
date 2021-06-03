@@ -1,12 +1,12 @@
-[submodule "pkg/mattn/go-isatty"]
-	path = pkg/mattn/go-isatty
-	url = https://github.com/mattn/go-isatty.git
-[submodule "pkg/mattn/go-colorable"]
-	path = pkg/mattn/go-colorable
-	url = https://github.com/mattn/go-colorable.git
 [submodule "pkg/jsonparser"]
 	path = pkg/jsonparser
 	url = https://github.com/buger/jsonparser
 [submodule "pkg/color"]
 	path = pkg/color
 	url = https://github.com/fatih/color
+[submodule "pkg/go-colorable"]
+	path = pkg/go-colorable
+	url = https://github.com/mattn/go-colorable
+[submodule "pkg/go-isatty"]
+	path = pkg/go-isatty
+	url = https://github.com/mattn/go-isatty

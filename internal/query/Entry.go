@@ -24,7 +24,7 @@ import (
 	"internal/design"
 	"internal/structs"
 	"os"
-	"pkg/fatih/color"
+	"pkg/color"
 	"strconv"
 )
 

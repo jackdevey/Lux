@@ -22,7 +22,7 @@ package design
 
 import (
 	"internal/general"
-	"pkg/fatih/color"
+	"pkg/color"
 )
 
 // PrintHeading prints text in a unified heading
