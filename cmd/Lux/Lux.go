@@ -22,6 +22,7 @@ package main
 
 import (
 	"internal/design"
+	"internal/query"
 	"internal/structs"
 	"os"
 	"pkg/fatih/color"
@@ -36,9 +37,8 @@ func main() {
 	connection.Url = "https://developer-api.govee.com/"
 
 	switch os.Args[1] {
-		case "devices":
-			Devices()
-			break
+		case "devices": Devices(); break
+		case "query": query.Entry(os.Args); break
 	}
 
 }

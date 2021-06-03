@@ -30,3 +30,27 @@ func BoolToString(b bool) string {
 		return "[✗ No]"
 	}
 }
+
+// StringToBool converts a string to a
+// boolean. Sorta like the reverse of
+// BoolToString. It will convert words like
+// on / off, true / false into boolean data.
+// Anything else will return false.
+func StringToBool(s string) bool {
+	if s == "true" || s == "on" || s == "yes" {
+		return true
+	}else {
+		return false
+	}
+}
+
+// HexTo2Places is used for converting
+// the value 0 to 00. This is used for
+// hexadecimal colour codes.
+func HexTo2Places(h string) string {
+	if h == "0" {
+		return "00"
+	}else {
+		return h
+	}
+}

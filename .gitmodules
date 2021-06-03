@@ -7,3 +7,6 @@
 [submodule "go-colorable"]
 	path = pkg/mattn/go-colorable
 	url = https://github.com/mattn/go-colorable.git
+[submodule "pkg/jsonparser"]
+	path = pkg/jsonparser
+	url = https://github.com/buger/jsonparser
