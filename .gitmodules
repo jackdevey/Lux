@@ -4,9 +4,9 @@
 [submodule "pkg/color"]
 	path = pkg/color
 	url = https://github.com/fatih/color
-[submodule "pkg/go-colorable"]
-	path = pkg/go-colorable
+[submodule "github.com/mattn/go-colorable"]
+	path = github.com/mattn/go-colorable
 	url = https://github.com/mattn/go-colorable
-[submodule "pkg/go-isatty"]
-	path = pkg/go-isatty
+[submodule "github.com/mattn/go-isatty"]
+	path = github.com/mattn/go-isatty
 	url = https://github.com/mattn/go-isatty
