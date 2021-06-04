@@ -24,7 +24,9 @@ import (
 	"commands/devices"
 	"commands/help"
 	"commands/query"
+	"internal/general"
 	"os"
+	"pkg/color"
 )
 
 // main is the command that is first
@@ -42,6 +44,8 @@ func main() {
 		case "devices": devices.Entry(os.Args); break
 		case "query": query.Entry(os.Args); break
 		case "help": help.Entry(os.Args); break
+		default: general.PrintHeading("Unknown command " + os.Args[1], color.FgRed)
+
 	}
 }
 
