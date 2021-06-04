@@ -20,20 +20,7 @@
 <p>Currently, to install Lux, you must download the source and compile it your self. After releases are made, we will provide & host various executables.</p>
 
 <h2 id="commands">Commands</h2>
-<ul id='EDTCMDS'>
- <li>
-  <code>lux devices</code>
-  <p>Lists the devices associated with the user's account in a simple way.</p>
- </li>
- <li>
-  <code>lux devices complex</code>
-  <p>Lists the devices associated with the user's account with all variables shown.</p>
- </li>
- <li>
-  <code>lux query n</code>
-  <p>Shows the current state of device <code>n</code>. Prints information such as the power status, brightness & colour.</p>
- </li>
-</ul>
+<ul id='EDTCMDS'><li><code>lux devices</code><p>Lists the devices registered on the user's account</p></li><li><code>lux query 0</code><p>Returns data about the state of a device</p></li><li><code>lux help</code><p>Lists a list of commands and information about the CLI</p></li></ul>
 
 <h2 id="contributing">Contributing</h2>
 <p>Looking to contribute to Lux? That&#39;s great! There are a couple of ways to help out. Translations, bug reports and pull requests are all greatly appreciated. Please refer to our <a href="https://github.com/BanDev/Lux/blob/main/CONTRIBUTING.md">contributing guidelines</a> to get started.</p>
