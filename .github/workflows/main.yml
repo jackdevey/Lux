@@ -1,0 +1,13 @@
+on: release
+jobs:
+  update-readme:
+    name: Update Readme
+    runs-on: ubuntu-latest
+    steps:
+    - name: Make Request to BanDev API
+      id: req
+      uses: fjogeleit/http-request-action@master
+      with:
+        url: "https://bandev.uk/api/lux/commands.json"
+    - name: Show Response
+      run: echo ${{ update-readme.req.outputs.response }}
