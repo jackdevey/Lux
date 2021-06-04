@@ -1,4 +1,5 @@
 import requests
+import json
 
 url = "https://bandev.uk/api/lux/commands.json"
 
