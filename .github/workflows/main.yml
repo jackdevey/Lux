@@ -6,6 +6,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2.2.2
-    - run: curl -s 'https://bandev.uk/api/lux/commands.json' 
+    - run: pip install requests
     - run: python3 -c "import sys, json; print(json.load(sys.stdin)['commands'][0]['name'])"
       
