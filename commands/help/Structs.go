@@ -22,9 +22,7 @@ package help
 
 import (
 	"encoding/json"
-	"internal/design"
 	"internal/general"
-	"internal/structs"
 	"pkg/color"
 	"strings"
 )
@@ -50,7 +48,7 @@ type Command struct {
 // Fill fills an empty struct with the latest
 // commands from the commands api.
 func (c *Commands) Fill() {
-	var conn structs.Connection
+	var conn general.Connection
 	conn.Url = "https://bandev.uk"
 	conn.Key = "NOT-NEEDED"
 	_ = json.Unmarshal(conn.Get("/api/lux/commands.json"), &c)
@@ -59,17 +57,17 @@ func (c *Commands) Fill() {
 // List lists all the commands to the screen
 // in a similar way to devices.
 func (c *Commands) List() {
-	design.PrintHeading("COMMANDS", color.FgWhite)
+	general.PrintHeading("COMMANDS", color.FgWhite)
 	for i := 0; i < len(c.Commands); i++ {
 		var command = c.Commands[i]
 		if command.BuildNo != general.BuildNo { continue }
-		design.PrintStringParagraph(command.Name, command.Description, color.FgWhite)
+		general.PrintStringParagraph(command.Name, command.Description, color.FgWhite)
 	}
-	design.Line()
-	design.PrintHeading("EXAMPLES", color.FgWhite)
+	general.Line()
+	general.PrintHeading("EXAMPLES", color.FgWhite)
 	for i := 0; i < len(c.Commands); i++ {
 		var command = c.Commands[i]
 		if command.BuildNo != general.BuildNo { continue }
-		design.PrintStringParagraph(command.Name, strings.Join(command.Examples, ", "), color.FgWhite)
+		general.PrintStringParagraph(command.Name, strings.Join(command.Examples, ", "), color.FgWhite)
 	}
 }

@@ -21,7 +21,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package help
 
 import (
-	"internal/design"
 	"internal/general"
 	"pkg/color"
 )
@@ -34,15 +33,15 @@ func Entry(args []string) {
 	var c Commands
 	c.Fill()
 
-	design.PrintHeading("Welcome to Lux!", color.FgWhite)
-	design.PrintHeading("Lux " + general.BuildName, color.Italic)
-	design.Line()
+	general.PrintHeading("Welcome to Lux!", color.FgWhite)
+	general.PrintHeading("Lux " + general.BuildName, color.Italic)
+	general.Line()
 	c.List()
-	design.Line()
-	design.PrintHeading("ABOUT LUX", color.FgWhite)
-	design.PrintStringParagraph("description", general.Description, color.FgWhite)
-	design.PrintStringParagraph("build", general.BuildName, color.FgWhite)
-	design.PrintStringParagraph("license", general.License, color.FgWhite)
-	design.PrintStringParagraph("repository", general.GHRepo, color.FgWhite)
-	design.PrintBoolParagraph("up to date", color.FgWhite, general.BuildNo == c.BuildNo)
+	general.Line()
+	general.PrintHeading("ABOUT LUX", color.FgWhite)
+	general.PrintStringParagraph("description", general.Description, color.FgWhite)
+	general.PrintStringParagraph("build", general.BuildName, color.FgWhite)
+	general.PrintStringParagraph("license", general.License, color.FgWhite)
+	general.PrintStringParagraph("repository", general.GHRepo, color.FgWhite)
+	general.PrintBoolParagraph("up to date", color.FgWhite, general.BuildNo == c.BuildNo)
 }

@@ -21,8 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package devices
 
 import (
-	"internal/design"
-	"internal/structs"
+	"internal/general"
 	"os"
 	"pkg/color"
 )
@@ -35,7 +34,7 @@ func Entry(args []string) {
 	if len(args) > 2 { command = args[2] } else { command = "simple" }
 
 	// Create a new connection struct
-	var c structs.Connection
+	var c general.Connection
 	c.Key = os.Getenv("GOVEE_API_KEY")
 	c.Url = "https://developer-api.govee.com/"
 
@@ -49,6 +48,6 @@ func Entry(args []string) {
 	}else if command == "simple" {
 		devices.SimpleList()
 	}else {
-		design.PrintHeading("Unknown command '" + command + "' for devices", color.FgRed)
+		general.PrintHeading("Unknown command '" + command + "' for devices", color.FgRed)
 	}
 }
