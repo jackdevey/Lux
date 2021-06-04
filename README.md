@@ -14,7 +14,7 @@
 </div>
 
 <h2 id="what">What is Lux?</h2>
-<p>Lux is a command line interface for controlling and monitoring Govee lighting strips built in Go. Lux provides it's users with the ability to manage their lighting strips from their desktop computer from any network with an internet connection.</p>
+<p>Lux is a command-line interface for controlling and monitoring Govee lighting strips built in Go. Lux provides it's users with the ability to manage their lighting strips from their desktop computer from any network with an internet connection.</p>
 
 <h2 id="installation">Installation</h2>
 <p>Currently, to install Lux, you must download the source and compile it your self. After releases are made, we will provide & host various executables.</p>
