@@ -2,6 +2,8 @@ import glob
 
 files_tmp = glob.glob('/home/runner/work/Lux/Lux/*/*/*.go')
 
+files = []
+
 for file_tmp in files_tmp:
     if file_tmp.startswith("/home/runner/work/Lux/Lux/pkg"):
         print("Excluded: " + file_tmp)
