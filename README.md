@@ -3,7 +3,7 @@
  <br>
  <a>
   <img src="https://bandev.uk/api/badges/app-promise.svg"/>
-  <a href="https://github.com/BanDev/Lux/blob/main/LICENSE" target="_blank">
+  <a href="https://github.com/BanDev/Lux/blob/main/LICENSE.md" target="_blank">
    <img src="https://img.shields.io/github/license/bandev/lux"/>
   </a>
   <img src="https://img.shields.io/github/repo-size/bandev/lux"/>
