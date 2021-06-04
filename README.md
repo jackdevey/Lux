@@ -12,9 +12,33 @@
   </a>
  </a>
 </div>
+
+<h2 id="what">What is Lux?</h2>
+<p>Lux is a command line interface for controlling and monitoring Govee lighting strips built in Go. Lux provides it's users with the ability to manage their lighting strips from their desktop computer from any network with an internet connection.</p>
+
+<h2 id="installation">Installation</h2>
+<p>Currently, to install Lux, you must download the source and compile it your self. After releases are made, we will provide & host various executables.</p>
+
+<h2 id="commands">Commands</h2>
+<ul>
+ <li>
+  <code>lux devices</code>
+  <p>Lists the devices associated with the user's account in a simple way.</p>
+ </li>
+ <li>
+  <code>lux devices complex</code>
+  <p>Lists the devices associated with the user's account with all variables shown.</p>
+ </li>
+ <li>
+  <code>lux query n</code>
+  <p>Shows the current state of device <code>n</code>. Prints information such as the power status, brightness & colour.</p>
+ </li>
+</ul>
+
 <h2 id="contributing">Contributing</h2>
 <p>Looking to contribute to Lux? That&#39;s great! There are a couple of ways to help out. Translations, bug reports and pull requests are all greatly appreciated. Please refer to our <a href="https://github.com/BanDev/Lux/blob/main/CONTRIBUTING.md">contributing guidelines</a> to get started.</p>
-<h2>License</h2>
+
+<h2 id="license">License</h2>
 <pre>
 Lux
 Copyright © 2021 BanDev
