@@ -20,7 +20,7 @@
 <p>Currently, to install Lux, you must download the source and compile it your self. After releases are made, we will provide & host various executables.</p>
 
 <h2 id="commands">Commands</h2>
-<ul>
+<ul id='EDTCMDS'>
  <li>
   <code>lux devices</code>
   <p>Lists the devices associated with the user's account in a simple way.</p>
