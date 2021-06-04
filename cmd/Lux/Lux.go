@@ -22,6 +22,7 @@ package main
 
 import (
 	"commands/devices"
+	"commands/help"
 	"commands/query"
 	"os"
 )
@@ -31,9 +32,16 @@ import (
 // user based on what the arguments are.
 func main() {
 	// Decide what part of the cli to run
+
+	// If no argument given, run help
+	if len(os.Args) == 1 { help.Entry(os.Args); return }
+
+	// If an arg is present check what was
+	// requested
 	switch os.Args[1] {
 		case "devices": devices.Entry(os.Args); break
 		case "query": query.Entry(os.Args); break
+		case "help": help.Entry(os.Args); break
 	}
 }
 

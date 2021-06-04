@@ -18,10 +18,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package design
+package general
 
 import (
-	"internal/general"
 	"pkg/color"
 )
 
@@ -49,8 +48,13 @@ func PrintBoolParagraph(s1 string, c1 color.Attribute, yes bool) {
 	var c2 = color.FgRed
 	if yes { c2 = color.FgGreen }
 	d2 := color.New(c2)
-	_, _ = d2.Print(GridSpacing(s1) + general.BoolToString(yes))
+	_, _ = d2.Print(GridSpacing(s1) + BoolToString(yes))
 	print("\r\n")
+}
+
+// Line prints an empty line to the screen
+func Line() {
+	PrintHeading("", color.Concealed)
 }
 
 // GridSpacing calculates & prints spaces in order

@@ -18,10 +18,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package structs
+package general
 
 import (
-	"internal/general"
 	"strconv"
 )
 
@@ -37,8 +36,8 @@ type Colour struct {
 // ToString converts a Colour struct
 // into a hexadecimal colour code.
 func (c *Colour) ToString() string {
-	var hr = general.HexTo2Places(strconv.FormatInt(c.R, 16))
-	var hg = general.HexTo2Places(strconv.FormatInt(c.G, 16))
-	var hb = general.HexTo2Places(strconv.FormatInt(c.B, 16))
+	var hr = HexTo2Places(strconv.FormatInt(c.R, 16))
+	var hg = HexTo2Places(strconv.FormatInt(c.G, 16))
+	var hb = HexTo2Places(strconv.FormatInt(c.B, 16))
 	return "#" + hr + hg + hb
 }

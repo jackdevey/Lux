@@ -23,25 +23,24 @@ package query
 import (
 	"commands/devices"
 	"internal/general"
-	"internal/structs"
 	"pkg/jsonparser"
 )
 
 // Query is the struct for storing the
 // data returned by Govee.
 type Query struct {
-	Device string
-	Model string
-	Online bool
-	Power bool
+	Device     string
+	Model      string
+	Online     bool
+	Power      bool
 	Brightness int64
-	Colour structs.Colour
+	Colour     general.Colour
 }
 
 // Fill fills a Query struct with
 // the data returned from Govee with
 // the parameter of a Device struct.
-func (q *Query) Fill(c structs.Connection, d devices.Device) {
+func (q *Query) Fill(c general.Connection, d devices.Device) {
 	var r = c.Get("v1/devices/state?device=" + d.MAC + "&model=" + d.Model)
 	q.Device, _ = jsonparser.GetString(r, "data", "device")
 	q.Model, _ = jsonparser.GetString(r, "data", "model")

@@ -18,36 +18,30 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package devices
+package help
 
 import (
 	"internal/general"
-	"os"
 	"pkg/color"
 )
 
 // Entry function is the entry point for
 // the devices module.
 func Entry(args []string) {
-	// Determine the command the user wants
-	var command string
-	if len(args) > 2 { command = args[2] } else { command = "simple" }
 
-	// Create a new connection struct
-	var c general.Connection
-	c.Key = os.Getenv("GOVEE_API_KEY")
-	c.Url = "https://developer-api.govee.com/"
+	// Get latest commands from server
+	var c Commands
+	c.Fill()
 
-	// Get a list of devices from Govee
-	var devices Devices
-	devices.Get(c)
-
-	// Device on the command to run
-	if command == "complex" {
-		devices.ComplexList()
-	}else if command == "simple" {
-		devices.SimpleList()
-	}else {
-		general.PrintHeading("Unknown command '" + command + "' for devices", color.FgRed)
-	}
+	general.PrintHeading("Welcome to Lux!", color.FgWhite)
+	general.PrintHeading("Lux " + general.BuildName, color.Italic)
+	general.Line()
+	c.List()
+	general.Line()
+	general.PrintHeading("ABOUT LUX", color.FgWhite)
+	general.PrintStringParagraph("description", general.Description, color.FgWhite)
+	general.PrintStringParagraph("build", general.BuildName, color.FgWhite)
+	general.PrintStringParagraph("license", general.License, color.FgWhite)
+	general.PrintStringParagraph("repository", general.GHRepo, color.FgWhite)
+	general.PrintBoolParagraph("up to date", color.FgWhite, general.BuildNo == c.BuildNo)
 }
