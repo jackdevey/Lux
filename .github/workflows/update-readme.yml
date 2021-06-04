@@ -1,16 +1,16 @@
 on: release
 jobs:
   deployment:
-    name: Update Readme
+    name: Update README
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2.2.2
     - run: pip install requests
     - run: python3 scripts/update-readme.py
-    - uses: EndBug/add-and-commit@v7 # You can change this to use a specific version
+    - uses: EndBug/add-and-commit@v7
       with:
-        author_name: Readme Updater
-        author_email: hello@bandev.uk
+        author_name: BanDev Bot
+        author_email: bots@bandev.uk
         message: 'Updated Readme'
       
