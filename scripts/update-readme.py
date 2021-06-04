@@ -22,7 +22,6 @@ newcommands = ""
 for command in commands:
   newcommands += "<li>"+command+"</li>"
   
-a1[1] = "<ul id='EDTCMDS'>"+newcommands+"</ul>"
-text = "".join(a1)
+text = a1[0] + "<ul id='EDTCMDS'>"+newcommands+"</ul>" + al[2]
 
 print(text)
