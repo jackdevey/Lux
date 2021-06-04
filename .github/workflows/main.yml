@@ -1,6 +1,6 @@
 on: push
 jobs:
-  update-readme:
+  deployment:
     name: Update Readme
     runs-on: ubuntu-latest
     steps:
