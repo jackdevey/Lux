@@ -10,4 +10,4 @@ jobs:
       with:
         url: "https://bandev.uk/api/lux/commands.json"
     - name: Show Response
-      run: echo ${{ deployment.req.outputs.response }}
+      run: echo ${{ steps.req.outputs.response }}
