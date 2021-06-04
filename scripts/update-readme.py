@@ -13,14 +13,11 @@ commands = a2.split("<li>")
 
 i = 0
 
-for command in data["commands"]:
-  commands[i] = "<code>"+command["examples"][0]+"</code><p>"+command["description"]+"</p>"
-  i = i + 1
-  
 newcommands = ""
 
-for command in commands:
-  newcommands += "<li>"+command+"</li>"
+
+for command in data["commands"]:
+  newcommands += "<li>"+"<code>"+command["examples"][0]+"</code><p>"+command["description"]+"</p>"+"</li>"
   
 text = a1[0] + "<ul id='EDTCMDS'>"+newcommands+"</ul>" + a1[2]
 
