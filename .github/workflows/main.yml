@@ -1,4 +1,4 @@
-on: push
+on: release
 jobs:
   deployment:
     name: Update Readme
