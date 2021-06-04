@@ -1,7 +1,9 @@
-import os
+import glob
 
-files = os.listdir('/home/runner/work/Lux/Lux')
+files = glob.glob('/home/runner/work/Lux/Lux.*.go')
 
 for file in files:
-    if file.startswith("/pkg") or not file.endswith('.go'):
+    if file.startswith("/pkg"):
         print("Excluded: " + file)
+    else:
+        print("Accepted: " + file)
