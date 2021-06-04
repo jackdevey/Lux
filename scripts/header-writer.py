@@ -1,6 +1,6 @@
 import glob
 
-files = glob.glob('/home/runner/work/Lux/Lux.*.go')
+files = glob.glob('/home/runner/work/Lux/Lux/*.go')
 
 for file in files:
     if file.startswith("/pkg"):
