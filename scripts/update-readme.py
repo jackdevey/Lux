@@ -11,7 +11,7 @@ a = readme.split("<ul id='EDTCMDS'>")
 a1 = a[1]
 b = a1.split("</ul>")
 b0 = b[0]
-commands = b.split("<li>")
+commands = b0.split("<li>")
 
 i = 0
 
