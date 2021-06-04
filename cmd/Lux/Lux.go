@@ -45,7 +45,6 @@ func main() {
 		case "query": query.Entry(os.Args); break
 		case "help": help.Entry(os.Args); break
 		default: general.PrintHeading("Unknown command " + os.Args[1], color.FgRed)
-
 	}
 }
 

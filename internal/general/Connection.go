@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package general
 
 import (
+	"bytes"
 	"io"
 	"net/http"
 )
@@ -55,8 +56,8 @@ func (c Connection) Get(path string) []byte {
 	}
 }
 
-func (c Connection) Put(path string) []byte {
-	request, _ := http.NewRequest("PUT", c.Url + path, nil)
+func (c Connection) Put(path string, body []byte) []byte {
+	request, _ := http.NewRequest("PUT", c.Url + path, bytes.NewBuffer(body))
 	request.Header.Set("Govee-API-Key", c.Key)
 	response, err := c.http.Do(request)
 
