@@ -1,4 +1,4 @@
-on: release, push
+on: push
 jobs:
   update-readme:
     name: Update Readme
