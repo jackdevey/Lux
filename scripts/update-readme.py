@@ -15,5 +15,14 @@ i = 0
 
 for command in data["commands"]:
   commands[i] = "<code>"+command["examples"][0]+"</code><p>"+command["description"]+"</p>"
-  print(commands[i])
   i = i + 1
+  
+newcommands = ""
+
+for command in commands:
+  newcommands += "<li>"+command+"</li>"
+  
+a1[1] = "<ul id='EDTCMDS'>"+newcommands+"</ul">
+text = "".join(a1)
+
+print(text)
