@@ -5,7 +5,7 @@ url = "https://bandev.uk/api/lux/commands.json"
 
 data = json.loads(requests.get(url).text)
 
-readme = open("readme.md", "r").read()
+readme = open("../readme.md", "r").read()
 
 commands = readme.split("<ul id='EDTCMDS'>")[0].split("</ul>")[0].split("<li>")
 
