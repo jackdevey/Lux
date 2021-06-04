@@ -6,11 +6,6 @@ jobs:
     steps:
     - name: Setup Python
       uses: actions/setup-python@v2.2.2
-    - name: Make Request to BanDev API
-      id: req
-      uses: fjogeleit/http-request-action@master
-      with:
-        url: "https://bandev.uk/api/lux/commands.json"
     - name: Update Readme
-      run: curl -s 'https://bandev.uk/api/lux/commands.json' | \ python3 -c "import sys, json; print(json.load(sys.stdin)['commands'][0]['name'])"
+      run: curl -s 'https://bandev.uk/api/lux/commands.json' | \ python -c "import sys, json; print(json.load(sys.stdin)['commands'][0]['name'])"
       
