@@ -4,8 +4,7 @@ jobs:
     name: Update Readme
     runs-on: ubuntu-latest
     steps:
-    - name: Setup Python
-      uses: actions/setup-python@v2.2.2
-    - name: Update Readme
-      run: curl -s 'https://bandev.uk/api/lux/commands.json' | \ python -c "import sys, json; print(json.load(sys.stdin)['commands'][0]['name'])"
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2.2.2
+    - run: curl -s 'https://bandev.uk/api/lux/commands.json' | \ python -c "import sys, json; print(json.load(sys.stdin)['commands'][0]['name'])"
       
