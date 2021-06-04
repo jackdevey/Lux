@@ -9,6 +9,8 @@ readme = open("/home/runner/work/Lux/Lux/README.md", "r").read()
 
 commands = readme.split("<ul id='EDTCMDS'>")[0].split("</ul>")[0].split("<li>")
 
+print(len(commands))
+
 i = 0
 
 for command in data["commands"]:
