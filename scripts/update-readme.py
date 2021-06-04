@@ -17,10 +17,11 @@ i = 0
 
 newcommands = ""
 
-
 for command in data["commands"]:
   newcommands += "<li>"+"<code>"+command["examples"][0]+"</code><p>"+command["description"]+"</p>"+"</li>"
   
 text = a[0] + "<ul id='EDTCMDS'>"+newcommands+"</ul>" + b[1]
 
-print(text)
+f = open("/home/runner/work/Lux/Lux/README.md", "w").write(text)
+
+print("Done")
