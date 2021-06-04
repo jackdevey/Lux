@@ -10,5 +10,5 @@ jobs:
       with:
         url: "https://bandev.uk/api/lux/commands.json"
     - name: Update Readme
-        
-      run: for c in ${{ fromJson(steps.req.outputs.response).commands }}; do echo c; done
+      run: curl -s 'https://bandev.uk/api/lux/commands.json' | \ python3 -c "import sys, json; print(json.load(sys.stdin)['commands'][0]['name'])
+      
