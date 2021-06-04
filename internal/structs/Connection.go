@@ -44,7 +44,7 @@ func (c Connection) Get(path string) []byte {
 	response, err := c.http.Do(request)
 
 	if err != nil {
-		println("Error making request to Govee")
+		println("Error making request")
 		return []byte("")
 	}else if response != nil {
 		body, _ := io.ReadAll(response.Body)
@@ -61,7 +61,7 @@ func (c Connection) Put(path string) []byte {
 	response, err := c.http.Do(request)
 
 	if err != nil {
-		println("Error making request to Govee")
+		println("Error making request")
 		return []byte("")
 	}else if response != nil {
 		body, _ := io.ReadAll(response.Body)

@@ -54,3 +54,13 @@ func HexTo2Places(h string) string {
 		return h
 	}
 }
+
+// Below are a few constants that define info
+// about Lux
+
+const BuildName = "PRE"
+const BuildNo = 0
+const GHRepo = "https://github.com/bandev/lux"
+const License = "GPL-3.0"
+const Description = "Lux is a cli for controlling and monitoring Govee lighting strips"
+

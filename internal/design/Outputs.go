@@ -53,6 +53,11 @@ func PrintBoolParagraph(s1 string, c1 color.Attribute, yes bool) {
 	print("\r\n")
 }
 
+// Line prints an empty line to the screen
+func Line() {
+	PrintHeading("", color.Concealed)
+}
+
 // GridSpacing calculates & prints spaces in order
 // to make grid style print statements.
 func GridSpacing(s1 string) string {
