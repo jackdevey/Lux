@@ -5,10 +5,10 @@ package colorable
 
 import (
 	"bytes"
-	"github.com/mattn/go-isatty"
 	"io"
 	"math"
 	"os"
+	"pkg/mattn/go-isatty"
 	"strconv"
 	"strings"
 	"sync"
