@@ -13,7 +13,7 @@ for file_tmp in files_tmp:
         
 for file in files:
     text = open(file).read()
-    if text.startswith("""/**
+    if not text.startswith("""/**
 
 Lux
 Copyright (C) 2021  BanDev
@@ -32,4 +32,4 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 */"""):
-        print("Header found")
+        print(file + " - No header file found")
