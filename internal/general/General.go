@@ -26,9 +26,8 @@ package general
 func BoolToString(b bool) string {
 	if b {
 		return "[✓ Yes]"
-	}else {
-		return "[✗ No]"
 	}
+	return "[✗ No]"
 }
 
 // StringToBool converts a string to a
