@@ -22,13 +22,14 @@ package main
 
 import (
 	"commands/brightness"
+	"commands/color"
 	"commands/devices"
 	"commands/help"
 	"commands/query"
 	"commands/turn"
 	"internal/general"
 	"os"
-	"pkg/color"
+	colpkg "pkg/color"
 )
 
 // main is the command that is first
@@ -48,7 +49,8 @@ func main() {
 		case "help": help.Entry(os.Args); break
 		case "turn": turn.Entry(os.Args); break
 		case "brightness": brightness.Entry(os.Args); break
-		default: general.PrintHeading("Unknown command " + os.Args[1], color.FgRed)
+		case "color": color.Entry(os.Args); break
+		default: general.PrintHeading("Unknown command " + os.Args[1], colpkg.FgRed)
 	}
 }
 
