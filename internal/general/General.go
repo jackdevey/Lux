@@ -39,9 +39,8 @@ func BoolToString(b bool) string {
 func StringToBool(s string) bool {
 	if s == "true" || s == "on" || s == "yes" {
 		return true
-	}else {
-		return false
 	}
+	return false
 }
 
 // HexTo2Places is used for converting
@@ -50,17 +49,21 @@ func StringToBool(s string) bool {
 func HexTo2Places(h string) string {
 	if h == "0" {
 		return "00"
-	}else {
-		return h
 	}
+	return h
 }
 
 // Below are a few constants that define info
 // about Lux
 
+// BuildName is the name of the build
 const BuildName = "v1.0.0"
+// BuildNo is the build number
 const BuildNo = 0
+// GHRepo is the repo url
 const GHRepo = "https://github.com/bandev/lux"
+// License is the license
 const License = "GPL-3.0"
+// Description is the description
 const Description = "Lux is a cli for controlling and monitoring Govee lighting strips"
 

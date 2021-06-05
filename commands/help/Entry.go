@@ -7,7 +7,7 @@ import (
 
 // Entry function is the entry point for
 // the devices module.
-func Entry(args []string) {
+func Entry() {
 
 	// Get latest commands from server
 	var c Commands

@@ -49,7 +49,7 @@ type Command struct {
 // commands from the commands api.
 func (c *Commands) Fill() {
 	var conn general.Connection
-	conn.Url = "https://bandev.uk"
+	conn.Base = "https://bandev.uk"
 	conn.Key = "NOT-NEEDED"
 	_ = json.Unmarshal(conn.Get("/api/lux/commands.json"), &c)
 }

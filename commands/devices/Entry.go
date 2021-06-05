@@ -36,7 +36,7 @@ func Entry(args []string) {
 	// Create a new connection struct
 	var c general.Connection
 	c.Key = os.Getenv("GOVEE_API_KEY")
-	c.Url = "https://developer-api.govee.com/"
+	c.Base = "https://developer-api.govee.com/"
 
 	// Get a list of devices from Govee
 	var devices Devices

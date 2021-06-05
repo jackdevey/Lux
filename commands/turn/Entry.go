@@ -43,19 +43,19 @@ func Entry(args []string) {
 	}
 
 	// Determine the device id from the args
-	var dId, _ = strconv.Atoi(args[2])
+	var dID, _ = strconv.Atoi(args[2])
 
 	// Create a new connection struct
 	var c general.Connection
 	c.Key = os.Getenv("GOVEE_API_KEY")
-	c.Url = "https://developer-api.govee.com/"
+	c.Base = "https://developer-api.govee.com/"
 
 	// Get a list of devices owned by the user
 	var ds devices.Devices
 	ds.Get(c)
 
 	// Check dId provided is valid
-	if len(ds.Data.Devices) <= dId || dId < 0 {
+	if len(ds.Data.Devices) <= dID || dID < 0 {
 		general.PrintHeading("Device id provided is invalid", color.FgRed)
 		return
 	}
@@ -64,7 +64,7 @@ func Entry(args []string) {
 	var cmd = general.StringToBool(args[3])
 
 	// Find the device
-	var d = ds.Data.Devices[dId]
+	var d = ds.Data.Devices[dID]
 
 	// Create control and response structs
 	// & send the data.

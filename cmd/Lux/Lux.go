@@ -39,17 +39,17 @@ func main() {
 	// Decide what part of the cli to run
 
 	// If no argument given, run help
-	if len(os.Args) == 1 { help.Entry(os.Args); return }
+	if len(os.Args) == 1 { help.Entry(); return }
 
 	// If an arg is present check what was
 	// requested
 	switch os.Args[1] {
 		case "devices": devices.Entry(os.Args); break
 		case "query": query.Entry(os.Args); break
-		case "help": help.Entry(os.Args); break
 		case "turn": turn.Entry(os.Args); break
 		case "brightness": brightness.Entry(os.Args); break
 		case "color": color.Entry(os.Args); break
+		case "help": help.Entry(); break
 		default: general.PrintHeading("Unknown command " + os.Args[1], colpkg.FgRed)
 	}
 }

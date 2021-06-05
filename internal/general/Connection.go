@@ -32,7 +32,7 @@ import (
 type Connection struct {
 	http http.Client
 	Key  string
-	Url  string
+	Base  string
 }
 
 // Get makes a GET request to the API server
@@ -40,7 +40,7 @@ type Connection struct {
 // Usually a JSON object is returned in
 // byte array form to help with parsing.
 func (c Connection) Get(path string) []byte {
-	request, _ := http.NewRequest("GET", c.Url + path, nil)
+	request, _ := http.NewRequest("GET", c.Base + path, nil)
 	request.Header.Set("Govee-API-Key", c.Key)
 	response, err := c.http.Do(request)
 
@@ -56,8 +56,10 @@ func (c Connection) Get(path string) []byte {
 	}
 }
 
+// Put uses the PUT request to send
+// data to the API.
 func (c Connection) Put(path string, body []byte) []byte {
-	request, _ := http.NewRequest("PUT", c.Url + path, bytes.NewBuffer(body))
+	request, _ := http.NewRequest("PUT", c.Base + path, bytes.NewBuffer(body))
 	request.Header.Set("Govee-API-Key", c.Key)
 	request.Header.Set("Content-Type", "application/json")
 	response, err := c.http.Do(request)
