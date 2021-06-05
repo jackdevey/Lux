@@ -58,7 +58,7 @@ func HexTo2Places(h string) string {
 // Below are a few constants that define info
 // about Lux
 
-const BuildName = "PRE"
+const BuildName = "v1.0.0"
 const BuildNo = 0
 const GHRepo = "https://github.com/bandev/lux"
 const License = "GPL-3.0"
