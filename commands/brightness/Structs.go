@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package turn
+package brightness
 
 import (
 	"commands/devices"
@@ -38,19 +38,17 @@ type Control struct {
 // json that will be sent to govee.
 type ControlCmd struct {
 	Name string `json:"name"`
-	Value string `json:"value"`
+	Value int `json:"value"`
 }
 
-// Send sends all the data to govee to turn a
-// device on or off.
-func (c *Control) Send (d devices.Device, conn general.Connection, on bool) []byte {
+// Send sends all the data to govee to set
+// the value of the brightness
+func (c *Control) Send (d devices.Device, conn general.Connection, power int) []byte {
 	c.Device = d.MAC
 	c.Model = d.Model
-	c.Cmd.Name = "turn"
+	c.Cmd.Name = "brightness"
 
-	var value string
-	if on { value = "on" } else { value = "off" }
-	c.Cmd.Value = value
+	c.Cmd.Value = power
 
 	var data, _ = json.Marshal(&c)
 	return conn.Put("v1/devices/control", data)

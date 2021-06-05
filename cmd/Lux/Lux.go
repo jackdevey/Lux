@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package main
 
 import (
+	"commands/brightness"
 	"commands/devices"
 	"commands/help"
 	"commands/query"
@@ -46,6 +47,7 @@ func main() {
 		case "query": query.Entry(os.Args); break
 		case "help": help.Entry(os.Args); break
 		case "turn": turn.Entry(os.Args); break
+		case "brightness": brightness.Entry(os.Args); break
 		default: general.PrintHeading("Unknown command " + os.Args[1], color.FgRed)
 	}
 }

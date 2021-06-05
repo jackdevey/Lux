@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package turn
+package brightness
 
 import (
 	"commands/devices"
@@ -26,19 +26,18 @@ import (
 	"os"
 	"pkg/color"
 	"strconv"
-	"strings"
 )
 
-// Entry point for the turn on commands.
+// Entry point for the brightness on commands.
 // Checks the arguments and decides what
 // is required to do.
 func Entry(args []string) {
 	// Check a device id is present
 	if len(args) <= 2 {
-		general.PrintHeading("No device id provided. E.g. lux turn 0 on", color.FgRed)
+		general.PrintHeading("No device id provided. E.g. lux brightness 0 100", color.FgRed)
 		return
 	}else if len(args) <= 3 {
-		general.PrintHeading("Not enough arguments required. E.g. lux turn 0 off", color.FgRed)
+		general.PrintHeading("Not enough arguments required. E.g. lux brightness 0 69", color.FgRed)
 		return
 	}
 
@@ -56,12 +55,22 @@ func Entry(args []string) {
 
 	// Check dId provided is valid
 	if len(ds.Data.Devices) <= dId || dId < 0 {
-		general.PrintHeading("Device id provided is invalid", color.FgRed)
+		general.PrintHeading("Device id provided is invalid. E.g. lux brightness 0 50", color.FgRed)
 		return
 	}
 
-	// Find the command
-	var cmd = general.StringToBool(args[3])
+	// Find the power
+	var power, err = strconv.Atoi(args[3])
+	if err != nil {
+		general.PrintHeading("Brightness must be a number", color.FgRed)
+		return
+	}
+
+	// Check the power is allowed
+	if 0 > power || power > 100 {
+		general.PrintHeading("Brightness must be in range 0 < brightness < 100", color.FgRed)
+		return
+	}
 
 	// Find the device
 	var d = ds.Data.Devices[dId]
@@ -70,11 +79,11 @@ func Entry(args []string) {
 	// & send the data.
 	var control Control
 	var response Response
-	response.Fill(control.Send(d, c, cmd))
+	response.Fill(control.Send(d, c, power))
 
 	// Output data afterwards
-	general.PrintHeading("TURN " + args[2] + " " + strings.ToUpper(args[3]), color.FgWhite)
-	general.PrintBoolParagraph("power", color.FgWhite, cmd)
+	general.PrintHeading("BRIGHTNESS " + args[2] + " " + args[3] + "%", color.FgWhite)
+	general.PrintStringParagraph("brightness", strconv.Itoa(power) + "%", color.FgWhite)
 	general.PrintStringParagraph("transaction", response.Message, color.FgWhite)
 }
 
