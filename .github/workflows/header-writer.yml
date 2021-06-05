@@ -11,5 +11,5 @@ jobs:
     - uses: EndBug/add-and-commit@v7
       with:
         author_name: BanDev Bot
-        author_email: bots@bandev.uk
+        author_email: bot@bandev.uk
         message: 'Updated Readme'
