@@ -73,7 +73,7 @@ func Entry(args []string) {
 	response.Fill(control.Send(d, c, cmd))
 
 	// Output data afterwards
-	general.PrintHeading("TURN 0 " + strings.ToUpper(args[2]), color.FgWhite)
+	general.PrintHeading("TURN 0 " + strings.ToUpper(args[3]), color.FgWhite)
 	general.PrintBoolParagraph("power", color.FgWhite, cmd)
 	general.PrintStringParagraph("transaction", response.Message, color.FgWhite)
 }
