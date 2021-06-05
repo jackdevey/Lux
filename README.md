@@ -3,6 +3,9 @@
  <br>
  <a>
   <img src="https://bandev.uk/api/badges/app-promise.svg"/>
+  <a href="https://www.codacy.com/gh/BanDev/Lux/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=BanDev/Lux&amp;utm_campaign=Badge_Grade" target="_blank">
+    <img src="https://app.codacy.com/project/badge/Grade/6d8d30cf27224b9b9fa7368d605673f8"/>
+  </a>
   <a href="https://github.com/BanDev/Lux/blob/main/LICENSE.md" target="_blank">
    <img src="https://img.shields.io/github/license/bandev/lux"/>
   </a>
