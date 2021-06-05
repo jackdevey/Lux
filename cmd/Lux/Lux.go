@@ -24,6 +24,7 @@ import (
 	"commands/devices"
 	"commands/help"
 	"commands/query"
+	"commands/turn"
 	"internal/general"
 	"os"
 	"pkg/color"
@@ -44,6 +45,7 @@ func main() {
 		case "devices": devices.Entry(os.Args); break
 		case "query": query.Entry(os.Args); break
 		case "help": help.Entry(os.Args); break
+		case "turn": turn.Entry(os.Args); break
 		default: general.PrintHeading("Unknown command " + os.Args[1], color.FgRed)
 	}
 }

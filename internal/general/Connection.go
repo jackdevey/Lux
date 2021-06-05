@@ -59,6 +59,7 @@ func (c Connection) Get(path string) []byte {
 func (c Connection) Put(path string, body []byte) []byte {
 	request, _ := http.NewRequest("PUT", c.Url + path, bytes.NewBuffer(body))
 	request.Header.Set("Govee-API-Key", c.Key)
+	request.Header.Set("Content-Type", "application/json")
 	response, err := c.http.Do(request)
 
 	if err != nil {
