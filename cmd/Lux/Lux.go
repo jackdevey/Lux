@@ -21,12 +21,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package main
 
 import (
+	"commands/brightness"
+	"commands/color"
 	"commands/devices"
 	"commands/help"
 	"commands/query"
+	"commands/turn"
 	"internal/general"
 	"os"
-	"pkg/color"
+	colpkg "pkg/color"
 )
 
 // main is the command that is first
@@ -44,8 +47,10 @@ func main() {
 		case "devices": devices.Entry(os.Args); break
 		case "query": query.Entry(os.Args); break
 		case "help": help.Entry(os.Args); break
-		default: general.PrintHeading("Unknown command " + os.Args[1], color.FgRed)
-
+		case "turn": turn.Entry(os.Args); break
+		case "brightness": brightness.Entry(os.Args); break
+		case "color": color.Entry(os.Args); break
+		default: general.PrintHeading("Unknown command " + os.Args[1], colpkg.FgRed)
 	}
 }
 
