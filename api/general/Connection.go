@@ -22,7 +22,6 @@ package general
 
 import (
 	"bytes"
-	"io"
 	"net/http"
 )
 
@@ -48,8 +47,12 @@ func (c Connection) Get(path string) []byte {
 		println("Error making request")
 		return []byte("")
 	}else if response != nil {
-		body, _ := io.ReadAll(response.Body)
-		return body
+		buf := new(bytes.Buffer)
+		_, err := buf.ReadFrom(response.Body)
+		if err != nil {
+			return nil
+		}
+		return []byte(buf.String())
 	}else {
 		println("Something bad happened :(")
 		return []byte("")
@@ -68,8 +71,12 @@ func (c Connection) Put(path string, body []byte) []byte {
 		println("Error making request")
 		return []byte("")
 	}else if response != nil {
-		body, _ := io.ReadAll(response.Body)
-		return body
+		buf := new(bytes.Buffer)
+		_, err := buf.ReadFrom(response.Body)
+		if err != nil {
+			return nil
+		}
+		return []byte(buf.String())
 	}else {
 		println("Something bad happened :(")
 		return []byte("")
