@@ -21,9 +21,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package query
 
 import (
-	"commands/devices"
-	"internal/general"
-	"pkg/jsonparser"
+	"github.com/bandev/lux/api/general"
+	"github.com/bandev/lux/commands/devices"
+	"github.com/buger/jsonparser"
 )
 
 // Query is the struct for storing the

@@ -22,8 +22,8 @@ package help
 
 import (
 	"encoding/json"
-	"internal/general"
-	"pkg/color"
+	"github.com/bandev/lux/api/general"
+	"github.com/fatih/color"
 	"strings"
 )
 

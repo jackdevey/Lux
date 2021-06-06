@@ -21,15 +21,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package main
 
 import (
-	"commands/brightness"
-	"commands/color"
-	"commands/devices"
-	"commands/help"
-	"commands/query"
-	"commands/turn"
-	"internal/general"
+	"github.com/bandev/lux/api/general"
+	"github.com/bandev/lux/commands/brightness"
+	"github.com/bandev/lux/commands/color"
+	"github.com/bandev/lux/commands/devices"
+	"github.com/bandev/lux/commands/help"
+	"github.com/bandev/lux/commands/query"
+	"github.com/bandev/lux/commands/turn"
+	colpkg "github.com/fatih/color"
 	"os"
-	colpkg "pkg/color"
 )
 
 // main is the command that is first
@@ -44,12 +44,12 @@ func main() {
 	// If an arg is present check what was
 	// requested
 	switch os.Args[1] {
-		case "devices": devices.Entry(os.Args); break
-		case "query": query.Entry(os.Args); break
-		case "turn": turn.Entry(os.Args); break
-		case "brightness": brightness.Entry(os.Args); break
-		case "color": color.Entry(os.Args); break
-		case "help": help.Entry(); break
+		case "devices": devices.Entry(os.Args)
+		case "query": query.Entry(os.Args)
+		case "turn": turn.Entry(os.Args)
+		case "brightness": brightness.Entry(os.Args)
+		case "color": color.Entry(os.Args)
+		case "help": help.Entry()
 		default: general.PrintHeading("Unknown command " + os.Args[1], colpkg.FgRed)
 	}
 }

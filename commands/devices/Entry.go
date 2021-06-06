@@ -21,9 +21,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package devices
 
 import (
-	"internal/general"
+	"github.com/bandev/lux/api/general"
+	"github.com/fatih/color"
 	"os"
-	"pkg/color"
 )
 
 // Entry function is the entry point for

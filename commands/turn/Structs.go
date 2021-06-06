@@ -21,9 +21,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package turn
 
 import (
-	"commands/devices"
 	"encoding/json"
-	"internal/general"
+	"github.com/bandev/lux/api/general"
+	"github.com/bandev/lux/commands/devices"
 )
 
 // Control struct manages the control

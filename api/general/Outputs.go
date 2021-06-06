@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package general
 
 import (
-	"pkg/color"
+	"github.com/fatih/color"
 )
 
 // PrintHeading prints text in a unified heading

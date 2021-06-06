@@ -1,8 +1,8 @@
 package help
 
 import (
-	"internal/general"
-	"pkg/color"
+	"github.com/bandev/lux/api/general"
+	"github.com/fatih/color"
 )
 
 // Entry function is the entry point for

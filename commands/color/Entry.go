@@ -21,10 +21,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package color
 
 import (
-	"commands/devices"
-	"internal/general"
+	"github.com/bandev/lux/api/general"
+	"github.com/bandev/lux/commands/devices"
+	"github.com/fatih/color"
 	"os"
-	"pkg/color"
 	"strconv"
 	"strings"
 )
