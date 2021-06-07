@@ -25,9 +25,9 @@ import (
 	"github.com/bandev/lux/api/general"
 )
 
-// HasApiKey is used to check if the user has
+// HasAPIKey is used to check if the user has
 // an api key.
-func HasApiKey() bool {
+func HasAPIKey() bool {
 	var question = []*survey.Question{
 		{
 			Name: "HasAPIKey",
@@ -45,9 +45,9 @@ func HasApiKey() bool {
 	return general.StringToBool(answer.HasAPIKey)
 }
 
-// GetApiKey is used to read the user's
+// GetAPIKey is used to read the user's
 // api key.
-func GetApiKey() string {
+func GetAPIKey() string {
 	var question = []*survey.Question{
 		{
 			Name: "GetAPIKey",
