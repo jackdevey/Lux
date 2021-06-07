@@ -31,6 +31,21 @@ func PrintHeading(s string, c color.Attribute) {
 	_, _ = d.Println(s)
 }
 
+// PrintWarning prints a warning message to the screen
+func PrintWarning(s string) {
+	d := color.New(color.FgYellow)
+	_, _ = d.Print("! ")
+	d2 := color.New(color.FgWhite)
+	_, _ = d2.Print(s)
+	print("\r\n")
+}
+
+// PrintNeutral prints a neutral message to the screen
+func PrintNeutral(s string) {
+	d := color.New(color.FgWhite)
+	_, _ = d.Println("- " + s)
+}
+
 // PrintStringParagraph prints text in a unified paragraph
 // format taking into account grid spacing.
 func PrintStringParagraph(s1 string, s2 string, c1 color.Attribute) {

@@ -27,6 +27,7 @@ import (
 	"github.com/bandev/lux/commands/devices"
 	"github.com/bandev/lux/commands/help"
 	"github.com/bandev/lux/commands/query"
+	"github.com/bandev/lux/commands/setup"
 	"github.com/bandev/lux/commands/turn"
 	colpkg "github.com/fatih/color"
 	"os"
@@ -49,6 +50,7 @@ func main() {
 		case "turn": turn.Entry(os.Args)
 		case "brightness": brightness.Entry(os.Args)
 		case "color": color.Entry(os.Args)
+		case "setup": setup.Entry()
 		case "help": help.Entry()
 		default: general.PrintHeading("Unknown command " + os.Args[1], colpkg.FgRed)
 	}
