@@ -25,12 +25,12 @@ import (
 	"github.com/bandev/lux/api/general"
 )
 
-// hasApiKey is used to check if the user has
+// HasApiKey is used to check if the user has
 // an api key.
-func hasApiKey() bool {
+func HasApiKey() bool {
 	var question = []*survey.Question{
 		{
-			Name: "HasApiKey",
+			Name: "HasAPIKey",
 			Prompt: &survey.Select{
 				Message: "Do you have one?",
 				Options: []string{"yes", "no"},
@@ -39,26 +39,26 @@ func hasApiKey() bool {
 		},
 	}
 	var answer = struct {
-		HasApiKey string
+		HasAPIKey string
 	}{}
 	_ = survey.Ask(question, &answer)
-	return general.StringToBool(answer.HasApiKey)
+	return general.StringToBool(answer.HasAPIKey)
 }
 
-// getApiKey is used to read the user's
+// GetApiKey is used to read the user's
 // api key.
-func getApiKey() string {
+func GetApiKey() string {
 	var question = []*survey.Question{
 		{
-			Name: "GetApiKey",
+			Name: "GetAPIKey",
 			Prompt: &survey.Input{Message: "Enter Govee Api Key"},
 			Validate: survey.Required,
 			Transform: survey.Title,
 		},
 	}
 	var answer = struct {
-		GetApiKey string
+		GetAPIKey string
 	}{}
 	_ = survey.Ask(question, &answer)
-	return answer.GetApiKey
+	return answer.GetAPIKey
 }
