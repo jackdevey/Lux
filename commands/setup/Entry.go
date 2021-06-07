@@ -33,8 +33,8 @@ import (
 func Entry() {
 	general.PrintWarning("To use Lux you must have a Govee API Key")
 
-	if HasApiKey() {
-		GetApiKey()
+	if HasAPIKey() {
+		GetAPIKey()
 	}else {
 		general.PrintNeutral("Press enter to open Api Key creation guide in browser...")
 		_, _ = fmt.Scanln()
