@@ -20,7 +20,7 @@
 <p>Lux is a command-line interface for controlling and monitoring Govee lighting strips built in Go. Lux provides it's users with the ability to manage their lighting strips from their desktop computer from any network with an internet connection.</p>
 
 <h2 id="installation">Installation</h2>
-<p>Currently, to install Lux, you must download the source and compile it your self. After releases are made, we will provide & host various executables.</p>
+<p>Currently, to install Lux, you must download the source and compile it on your own. After releases are made, we will provide & host various executables.</p>
 
 <h2 id="commands">Commands</h2>
 <ul id='EDTCMDS'><li><code>lux devices</code><p>Lists the devices registered on the user's account</p></li><li><code>lux query 0</code><p>Returns data about the state of a device</p></li><li><code>lux turn 0 on</code><p>Turn a device on or off</p></li><li><code>lux brightness 0 100</code><p>Alter the brightness of a device</p></li><li><code>lux color 0 #0067f4</code><p>Alter the color of a device</p></li><li><code>lux setup</code><p>Connet Lux to your Govee account using your API Key</p></li><li><code>lux help</code><p>Lists a list of commands and information about the CLI</p></li></ul>
