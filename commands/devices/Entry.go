@@ -22,20 +22,23 @@ package devices
 
 import (
 	"github.com/bandev/lux/api/general"
+	"github.com/bandev/lux/api/keymanager"
 	"github.com/fatih/color"
-	"os"
 )
 
 // Entry function is the entry point for
 // the devices module.
 func Entry(args []string) {
+	// If lux is not setup, throw an error
+	if !keymanager.PrintLuxHasAPIKey() { return }
+
 	// Determine the command the user wants
 	var command string
 	if len(args) > 2 { command = args[2] } else { command = "simple" }
 
 	// Create a new connection struct
 	var c general.Connection
-	c.Key = os.Getenv("GOVEE_API_KEY")
+	c.Key = keymanager.GetAPIKey()
 	c.Base = "https://developer-api.govee.com/"
 
 	// Get a list of devices from Govee

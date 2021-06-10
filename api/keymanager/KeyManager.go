@@ -22,6 +22,7 @@ package keymanager
 
 import (
 	"encoding/json"
+	"github.com/bandev/lux/api/general"
 	"os"
 )
 
@@ -68,5 +69,23 @@ func LuxHasAPIKey() bool {
 	var keymngr KeyStore
 	keymngr.Extract()
 	return keymngr.Key != ""
+}
+
+// PrintLuxHasAPIKey uses LuxHasAPIKey to
+// print an error if the user has no api key.
+func PrintLuxHasAPIKey() bool {
+	if !LuxHasAPIKey() {
+		general.PrintError("Lux is not setup! Please run lux setup to add your API Key")
+		return false
+	}
+	return true
+}
+
+// GetAPIKey allows packages to
+// request the api key
+func GetAPIKey() string {
+	var keymngr KeyStore
+	keymngr.Extract()
+	return keymngr.Key
 }
 

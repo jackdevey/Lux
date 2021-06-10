@@ -22,9 +22,9 @@ package turn
 
 import (
 	"github.com/bandev/lux/api/general"
+	"github.com/bandev/lux/api/keymanager"
 	"github.com/bandev/lux/commands/devices"
 	"github.com/fatih/color"
-	"os"
 	"strconv"
 	"strings"
 )
@@ -33,6 +33,9 @@ import (
 // Checks the arguments and decides what
 // is required to do.
 func Entry(args []string) {
+	// If lux is not setup, throw an error
+	if !keymanager.PrintLuxHasAPIKey() { return }
+
 	// Check a device id is present
 	if len(args) <= 2 {
 		general.PrintHeading("No device id provided. E.g. lux turn 0 on", color.FgRed)
@@ -47,7 +50,7 @@ func Entry(args []string) {
 
 	// Create a new connection struct
 	var c general.Connection
-	c.Key = os.Getenv("GOVEE_API_KEY")
+	c.Key = keymanager.GetAPIKey()
 	c.Base = "https://developer-api.govee.com/"
 
 	// Get a list of devices owned by the user
