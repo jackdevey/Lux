@@ -82,3 +82,13 @@ func (c Connection) Put(path string, body []byte) []byte {
 		return []byte("")
 	}
 }
+
+// TestKey uses the devices endpoint
+// to verify that the API Key provided
+// is valid.
+func (c Connection) TestKey() bool {
+	request, _ := http.NewRequest("GET", c.Base + "v1/devices", nil)
+	request.Header.Set("Govee-API-Key", c.Key)
+	response, _ := c.http.Do(request)
+	return !(response.StatusCode == 401)
+}

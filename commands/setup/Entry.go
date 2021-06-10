@@ -23,6 +23,7 @@ package setup
 import (
 	"fmt"
 	"github.com/bandev/lux/api/general"
+	"github.com/bandev/lux/api/keymanager"
 	"github.com/cli/browser"
 )
 
@@ -31,10 +32,13 @@ import (
 // and if they don't prompts them to a tutorial
 // on how to obtain one.
 func Entry() {
+	if keymanager.LuxHasAPIKey() {
+		general.PrintWarning("Lux is already setup with a Govee API Key")
+		return
+	}
 	general.PrintWarning("To use Lux you must have a Govee API Key")
-
 	if HasAPIKey() {
-		GetAPIKey()
+		AskForKey()
 	}else {
 		general.PrintNeutral("Press enter to open Api Key creation guide in browser...")
 		_, _ = fmt.Scanln()

@@ -23,6 +23,7 @@ package setup
 import (
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/bandev/lux/api/general"
+	"github.com/bandev/lux/api/keymanager"
 )
 
 // HasAPIKey is used to check if the user has
@@ -62,3 +63,22 @@ func GetAPIKey() string {
 	_ = survey.Ask(question, &answer)
 	return answer.GetAPIKey
 }
+
+// AskForKey uses the GetAPIKey function
+// to ask the user for and validate their
+// api key.
+func AskForKey() {
+	key := GetAPIKey()
+	c := general.Connection{
+		Key: key,
+		Base: "https://developer-api.govee.com/",
+	}
+	if c.TestKey() {
+		keymngr := keymanager.KeyStore{Key: key}
+		keymngr.Store()
+	}else if key != "" {
+		general.PrintError("Invalid API Key")
+		AskForKey()
+	}
+}
+

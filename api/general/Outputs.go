@@ -40,6 +40,14 @@ func PrintWarning(s string) {
 	print("\r\n")
 }
 
+func PrintError(s string) {
+	d := color.New(color.FgRed)
+	_, _ = d.Print("✗ ")
+	d2 := color.New(color.FgWhite)
+	_, _ = d2.Print(s)
+	print("\r\n")
+}
+
 // PrintNeutral prints a neutral message to the screen
 func PrintNeutral(s string) {
 	d := color.New(color.FgWhite)
