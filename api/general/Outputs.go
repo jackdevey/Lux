@@ -31,7 +31,8 @@ func PrintHeading(s string, c color.Attribute) {
 	_, _ = d.Println(s)
 }
 
-// PrintWarning prints a warning message to the screen
+// PrintWarning prints a warning message
+// to the screen
 func PrintWarning(s string) {
 	d := color.New(color.FgYellow)
 	_, _ = d.Print("! ")
@@ -40,6 +41,8 @@ func PrintWarning(s string) {
 	print("\r\n")
 }
 
+// PrintError prints an error message
+// to the string
 func PrintError(s string) {
 	d := color.New(color.FgRed)
 	_, _ = d.Print("✗ ")
