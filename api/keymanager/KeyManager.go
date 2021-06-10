@@ -23,6 +23,7 @@ package keymanager
 import (
 	"encoding/json"
 	"github.com/bandev/lux/api/general"
+	"io/ioutil"
 	"os"
 )
 
@@ -59,7 +60,7 @@ func (k *KeyStore) Store() {
 func (k *KeyStore) Extract() {
 	dir, _ := os.UserHomeDir()
 	path := dir + "\\.config\\lux\\key.json"
-	b, _ := os.ReadFile(path)
+	b, _ := ioutil.ReadFile(path)
 	_ = json.Unmarshal(b, &k)
 }
 
