@@ -1,30 +1,3 @@
-package help
-
-import (
-	"github.com/bandev/lux/api/general"
-	"github.com/fatih/color"
-)
-
-// Entry function is the entry point for
-// the devices module.
-func Entry() {
-
-	// Get latest commands from server
-	var c Commands
-	c.Fill()
-
-	general.PrintHeading("Welcome to Lux!", color.FgWhite)
-	general.PrintHeading("Lux " + general.BuildName, color.Italic)
-	general.Line()
-	c.List()
-	general.Line()
-	general.PrintHeading("ABOUT LUX", color.FgWhite)
-	general.PrintStringParagraph("description", general.Description, color.FgWhite)
-	general.PrintStringParagraph("build", general.BuildName, color.FgWhite)
-	general.PrintStringParagraph("license", general.License, color.FgWhite)
-	general.PrintStringParagraph("repository", general.GHRepo, color.FgWhite)
-	general.PrintBoolParagraph("up to date", color.FgWhite, general.BuildNo == c.BuildNo)
-}
 /**
 
 Lux
@@ -44,3 +17,34 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 */
+
+package help
+
+import (
+	"github.com/bandev/lux/api/general"
+	"github.com/bandev/lux/api/keymanager"
+	"github.com/fatih/color"
+)
+
+// Entry function is the entry point for
+// the devices module.
+func Entry() {
+
+	// Get latest commands from server
+	var c Commands
+	c.Fill()
+
+	general.PrintHeading("Welcome to Lux!", color.FgWhite)
+	general.PrintHeading("Lux " + general.BuildName, color.Italic)
+	keymanager.PrintLuxHasAPIKey()
+	general.Line()
+	c.List()
+	general.Line()
+	general.PrintHeading("ABOUT LUX", color.FgWhite)
+	general.PrintBoolParagraph("logged in", color.FgWhite, keymanager.LuxHasAPIKey())
+	general.PrintStringParagraph("description", general.Description, color.FgWhite)
+	general.PrintStringParagraph("build", general.BuildName, color.FgWhite)
+	general.PrintStringParagraph("license", general.License, color.FgWhite)
+	general.PrintStringParagraph("repository", general.GHRepo, color.FgWhite)
+	general.PrintBoolParagraph("up to date", color.FgWhite, general.BuildNo == c.BuildNo)
+}
