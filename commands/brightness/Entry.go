@@ -21,9 +21,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package brightness
 
 import (
+	"github.com/bandev/lux/api/core"
 	"github.com/bandev/lux/api/general"
 	"github.com/bandev/lux/api/keymanager"
-	"github.com/bandev/lux/commands/devices"
 	"github.com/fatih/color"
 	"strconv"
 )
@@ -44,23 +44,10 @@ func Entry(args []string) {
 		return
 	}
 
-	// Determine the device id from the args
-	var dID, _ = strconv.Atoi(args[2])
-
 	// Create a new connection struct
 	var c general.Connection
 	c.Key = keymanager.GetAPIKey()
 	c.Base = "https://developer-api.govee.com/"
-
-	// Get a list of devices owned by the user
-	var ds devices.Devices
-	ds.Get(c)
-
-	// Check dId provided is valid
-	if len(ds.Data.Devices) <= dID || dID < 0 {
-		general.PrintHeading("Device id provided is invalid. E.g. lux brightness 0 50", color.FgRed)
-		return
-	}
 
 	// Find the power
 	var power, err = strconv.Atoi(args[3])
@@ -75,19 +62,19 @@ func Entry(args []string) {
 		return
 	}
 
-	// Find the device
-	var d = ds.Data.Devices[dID]
+	// For each device
+	for i, d := range core.GetDevicesFrom(args[2], c) {
+		// Create control and response structs
+		// & send the data.
+		var control Control
+		var response Response
+		response.Fill(control.Send(d, c, power))
 
-	// Create control and response structs
-	// & send the data.
-	var control Control
-	var response Response
-	response.Fill(control.Send(d, c, power))
-
-	// Output data afterwards
-	general.PrintHeading("BRIGHTNESS " + args[2] + " " + args[3] + "%", color.FgWhite)
-	general.PrintStringParagraph("brightness", strconv.Itoa(power) + "%", color.FgWhite)
-	general.PrintStringParagraph("transaction", response.Message, color.FgWhite)
+		// Output data afterwards
+		general.PrintHeading("BRIGHTNESS " + strconv.Itoa(i) + " " + args[3] + "%", color.FgWhite)
+		general.PrintStringParagraph("brightness", strconv.Itoa(power) + "%", color.FgWhite)
+		general.PrintStringParagraph("transaction", response.Message, color.FgWhite)
+	}
 }
 
 

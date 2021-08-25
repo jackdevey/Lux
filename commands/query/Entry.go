@@ -21,9 +21,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package query
 
 import (
+	"github.com/bandev/lux/api/core"
 	"github.com/bandev/lux/api/general"
 	"github.com/bandev/lux/api/keymanager"
-	"github.com/bandev/lux/commands/devices"
 	"github.com/fatih/color"
 	"strconv"
 )
@@ -40,37 +40,22 @@ func Entry(args []string) {
 		return
 	}
 
-	// Determine the device id from the args
-	var dID, _ = strconv.Atoi(args[2])
-
 	// Create a new connection struct
 	var c general.Connection
 	c.Key = keymanager.GetAPIKey()
 	c.Base = "https://developer-api.govee.com/"
 
-	// Get a list of devices owned by the user
-	var ds devices.Devices
-	ds.Get(c)
-
-	// Check dId provided is valid
-	if len(ds.Data.Devices) <= dID || dID < 0 {
-		general.PrintHeading("Device id provided is invalid", color.FgRed)
-		return
+	for i, d := range core.GetDevicesFrom(args[2], c) {
+		// Generate and parse the query
+		var q Query
+		q.Fill(c, d)
+		// Print query to screen
+		general.PrintHeading("QUERY "+strconv.Itoa(i), color.FgWhite)
+		general.PrintStringParagraph("Device:", q.Device, color.FgWhite)
+		general.PrintStringParagraph("Model:", q.Model, color.FgWhite)
+		general.PrintBoolParagraph("Online:", color.FgWhite, q.Online)
+		general.PrintBoolParagraph("Power:", color.FgWhite, q.Power)
+		general.PrintStringParagraph("Brightness:", strconv.Itoa(int(q.Brightness))+"%", color.FgWhite)
+		general.PrintStringParagraph("Colour:", q.Colour.ToString(), color.FgWhite)
 	}
-
-	// Find the device
-	var d = ds.Data.Devices[dID]
-
-	// Generate and parse the query
-	var q Query
-	q.Fill(c, d)
-
-	// Print query to screen
-	general.PrintHeading("QUERY RESULTS", color.FgWhite)
-	general.PrintStringParagraph("Device:", q.Device, color.FgWhite)
-	general.PrintStringParagraph("Model:", q.Model, color.FgWhite)
-	general.PrintBoolParagraph("Online:", color.FgWhite, q.Online)
-	general.PrintBoolParagraph("Power:", color.FgWhite, q.Power)
-	general.PrintStringParagraph("Brightness:", strconv.Itoa(int(q.Brightness)) + "%", color.FgWhite)
-	general.PrintStringParagraph("Colour:", q.Colour.ToString(), color.FgWhite)
 }

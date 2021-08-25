@@ -21,9 +21,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package turn
 
 import (
+	"github.com/bandev/lux/api/core"
 	"github.com/bandev/lux/api/general"
 	"github.com/bandev/lux/api/keymanager"
-	"github.com/bandev/lux/commands/devices"
 	"github.com/fatih/color"
 	"strconv"
 	"strings"
@@ -45,40 +45,27 @@ func Entry(args []string) {
 		return
 	}
 
-	// Determine the device id from the args
-	var dID, _ = strconv.Atoi(args[2])
-
 	// Create a new connection struct
 	var c general.Connection
 	c.Key = keymanager.GetAPIKey()
 	c.Base = "https://developer-api.govee.com/"
 
-	// Get a list of devices owned by the user
-	var ds devices.Devices
-	ds.Get(c)
-
-	// Check dId provided is valid
-	if len(ds.Data.Devices) <= dID || dID < 0 {
-		general.PrintHeading("Device id provided is invalid", color.FgRed)
-		return
-	}
-
 	// Find the command
 	var cmd = general.StringToBool(args[3])
 
-	// Find the device
-	var d = ds.Data.Devices[dID]
+	// For each device
+	for i, d := range core.GetDevicesFrom(args[2], c) {
+		// Create control and response structs
+		// & send the data.
+		var control Control
+		var response Response
+		response.Fill(control.Send(d, c, cmd))
 
-	// Create control and response structs
-	// & send the data.
-	var control Control
-	var response Response
-	response.Fill(control.Send(d, c, cmd))
-
-	// Output data afterwards
-	general.PrintHeading("TURN " + args[2] + " " + strings.ToUpper(args[3]), color.FgWhite)
-	general.PrintBoolParagraph("power", color.FgWhite, cmd)
-	general.PrintStringParagraph("transaction", response.Message, color.FgWhite)
+		// Output data afterwards
+		general.PrintHeading("TURN " + strconv.Itoa(i) + " " + strings.ToUpper(args[3]), color.FgWhite)
+		general.PrintBoolParagraph("power", color.FgWhite, cmd)
+		general.PrintStringParagraph("transaction", response.Message, color.FgWhite)
+	}
 }
 
 

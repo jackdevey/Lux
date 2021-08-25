@@ -21,9 +21,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package color
 
 import (
+	"github.com/bandev/lux/api/core"
 	"github.com/bandev/lux/api/general"
 	"github.com/bandev/lux/api/keymanager"
-	"github.com/bandev/lux/commands/devices"
 	"github.com/fatih/color"
 	"strconv"
 	"strings"
@@ -45,24 +45,10 @@ func Entry(args []string) {
 		return
 	}
 
-	// Determine the device id from the args
-	var dID, _ = strconv.Atoi(args[2])
-
 	// Create a new connection struct
 	var c general.Connection
 	c.Key = keymanager.GetAPIKey()
 	c.Base = "https://developer-api.govee.com/"
-
-
-	// Get a list of devices owned by the user
-	var ds devices.Devices
-	ds.Get(c)
-
-	// Check dId provided is valid
-	if len(ds.Data.Devices) <= dID || dID < 0 {
-		general.PrintHeading("Device id provided is invalid. E.g. lux color 0 #0067f4", color.FgRed)
-		return
-	}
 
 	// Check for hexadecimal colour codes
 	var hex = args[3]
@@ -78,20 +64,19 @@ func Entry(args []string) {
 		return
 	}
 
+	// For each device
+	for i, d := range core.GetDevicesFrom(args[2], c) {
+		// Create control and response structs
+		// & send the data.
+		var control Control
+		var response Response
+		response.Fill(control.Send(d, c, colour))
 
-	// Find the device
-	var d = ds.Data.Devices[dID]
-
-	// Create control and response structs
-	// & send the data.
-	var control Control
-	var response Response
-	response.Fill(control.Send(d, c, colour))
-
-	// Output data afterwards
-	general.PrintHeading("COLOR " + args[2] + " " + strings.ToUpper(args[3]), color.FgWhite)
-	general.PrintStringParagraph("colour", args[3], color.FgWhite)
-	general.PrintStringParagraph("transaction", response.Message, color.FgWhite)
+		// Output data afterwards
+		general.PrintHeading("COLOR " + strconv.Itoa(i) + " " + strings.ToUpper(args[3]), color.FgWhite)
+		general.PrintStringParagraph("colour", args[3], color.FgWhite)
+		general.PrintStringParagraph("transaction", response.Message, color.FgWhite)
+	}
 }
 
 
