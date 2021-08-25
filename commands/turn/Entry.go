@@ -50,14 +50,11 @@ func Entry(args []string) {
 	c.Key = keymanager.GetAPIKey()
 	c.Base = "https://developer-api.govee.com/"
 
-	// Determine the devices from the args
-	var ds = core.GetDevicesFrom(args[2], c)
-
 	// Find the command
 	var cmd = general.StringToBool(args[3])
 
 	// For each device
-	for i, d := range ds {
+	for i, d := range core.GetDevicesFrom(args[2], c) {
 		// Create control and response structs
 		// & send the data.
 		var control Control
