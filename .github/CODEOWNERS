@@ -4,8 +4,8 @@ cmd/* @jackdevey
 commands/* @jackdevey
 scripts/* @jackdevey
 
-go.mod @jackdevey
-go.sum @jackdevey
+go.mod @russellbanks
+go.sum @russellbanks
 
 README.md @russellbanks
 LICENSE.md @russellbanks
