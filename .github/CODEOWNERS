@@ -1,0 +1,13 @@
+.github/* @jackdevey
+api/* @jackdevey
+cmd/* @jackdevey
+commands/* @jackdevey
+scripts/* @jackdevey
+
+go.mod @russellbanks
+go.sum @russellbanks
+
+README.md @russellbanks
+LICENSE.md @russellbanks
+CONTRIBUTING.md @russellbanks
+CODE_OF_CONDUCT.md @russellbanks
