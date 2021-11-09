@@ -42,6 +42,6 @@ func Entry() {
 	}else {
 		general.PrintNeutral("Press enter to open Api Key creation guide in browser...")
 		_, _ = fmt.Scanln()
-		_ = browser.OpenURL("https://github.com/bandev/lux")
+		_ = browser.OpenURL("https://github.com/BanDev/Lux/wiki/Getting-Started#setting-up-lux")
 	}
 }
