@@ -20,7 +20,7 @@
 <p>Lux is a command-line interface for controlling and monitoring Govee lighting strips built in Go. Lux provides it's users with the ability to manage their lighting strips from their desktop computer from any network with an internet connection.</p>
 
 <h2 id="installation">Installation</h2>
-<p>You can install Lux however you wish, we provide a simple installer executable for each release but if that's not your style you can easily compile Lux yourself directly from source. </p>
+<p>We provide a simple installer for each release for Windows but if that's not suitable for you, you can easily compile Lux directly from source. </p>
 <p>You can attain the latest copy of the Lux installer from our <a href="https://github.com/BanDev/Lux/releases">releases</a> page on GitHub, or through <a href="https://docs.microsoft.com/en-us/windows/package-manager/winget/">Winget</a> using the command below:</p>
 
 <pre>
