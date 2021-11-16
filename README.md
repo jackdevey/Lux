@@ -21,7 +21,7 @@
 
 <h2 id="installation">Installation</h2>
 <p>We provide a simple installer for each release for Windows but if that's not suitable for you, you can easily compile Lux directly from source. </p>
-<p>You can attain the latest copy of the Lux installer from our <a href="https://github.com/BanDev/Lux/releases">releases</a> page on GitHub, or through <a href="https://docs.microsoft.com/en-us/windows/package-manager/winget/">Winget</a> using the command below:</p>
+<p>You can get the latest copy of Lux from our <a href="https://github.com/BanDev/Lux/releases">GitHub releases</a>, or via <a href="https://docs.microsoft.com/en-us/windows/package-manager/winget/">Winget</a></p>
 
 <pre>
 winget install BanDev.Lux
