@@ -56,9 +56,9 @@ func HexTo2Places(h string) string {
 // about Lux
 
 // BuildName is the name of the build
-const BuildName = "v1.0.0"
+const BuildName = "v1.1.0"
 // BuildNo is the build number
-const BuildNo = 0
+const BuildNo = 1
 // GHRepo is the repo url
 const GHRepo = "https://github.com/bandev/lux"
 // License is the license
