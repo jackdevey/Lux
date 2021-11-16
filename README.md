@@ -29,7 +29,7 @@ winget install BanDev.Lux
 
 <blockquote>If you choose to self compile, you will need to add the path to `lux.exe` to your `Path` environment variables in order for Lux to be detected as a command in PowerShell & CMD.</blockquote>
 
-<p>If you're already using a terminal, restart it to update environment variables and then run the following to begin setting up your instance of Lux.</p>
+<p>If you're already using a terminal, restart it so that it can register the changes to the environment variables. Then, run the following command to begin setting up your instance of Lux.</p>
 
 <pre>
 lux setup
