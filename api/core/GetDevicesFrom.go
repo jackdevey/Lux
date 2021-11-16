@@ -10,7 +10,7 @@ import (
 
 
 // GetDevicesFrom will return an array of devices
-// from govee
+// from Govee
 func GetDevicesFrom(arg string, c general.Connection) []devices.Device {
 	var ds devices.Devices
 	ds.Get(c)
