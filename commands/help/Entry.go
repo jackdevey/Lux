@@ -43,7 +43,7 @@ func Entry() {
 	general.PrintHeading("ABOUT LUX", color.FgWhite)
 	general.PrintBoolParagraph("logged in", color.FgWhite, keymanager.LuxHasAPIKey())
 	general.PrintStringParagraph("description", general.Description, color.FgWhite)
-	general.PrintStringParagraph("build", general.BuildName, color.FgWhite)
+	general.PrintStringParagraph("build", general.BuildName + " (" + general.GetBits() + ")", color.FgWhite)
 	general.PrintStringParagraph("license", general.License, color.FgWhite)
 	general.PrintStringParagraph("repository", general.GHRepo, color.FgWhite)
 	general.PrintBoolParagraph("up to date", color.FgWhite, general.BuildNo == c.BuildNo)
