@@ -71,18 +71,8 @@ func (d *Devices) Get(c general.Connection) {
 // the terminal, the list includes the name,
 // model and if the device is controllable or
 // not by this app.
-func (d *Devices) SimpleList(limit int) {
-
-	var iterations int
-	var devices = len(d.Data.Devices)
-
-	if limit != 0 && limit <= devices {
-		iterations = limit
-	} else {
-		iterations = devices
-	}
-
-	for i := 0; i < iterations; i++ {
+func (d *Devices) SimpleList() {
+	for i := 0; i < len(d.Data.Devices); i++ {
 		var device = d.Data.Devices[i]
 		general.PrintHeading("DEVICE " + strconv.Itoa(i), color.FgWhite)
 		general.PrintStringParagraph("Name:", device.Name, color.FgWhite)
@@ -95,18 +85,8 @@ func (d *Devices) SimpleList(limit int) {
 // nice but complex way. It pretty much dumps
 // everything the app knows about their device
 // to the console.
-func (d *Devices) ComplexList(limit int) {
-
-	var iterations int
-	var devices = len(d.Data.Devices)
-
-	if limit != 0 && limit <= devices {
-		iterations = limit
-	} else {
-		iterations = devices
-	}
-
-	for i := 0; i < iterations; i++ {
+func (d *Devices) ComplexList() {
+	for i := 0; i < len(d.Data.Devices); i++ {
 		var device = d.Data.Devices[i]
 		general.PrintHeading("DEVICE " + strconv.Itoa(i), color.FgWhite)
 		general.PrintStringParagraph("MAC Address:", device.MAC, color.FgWhite)
