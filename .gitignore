@@ -20,5 +20,3 @@ github.com
 
 # Local dirs for development
 installer/
-binaries/
-build/

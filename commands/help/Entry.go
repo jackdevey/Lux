@@ -30,7 +30,7 @@ import (
 // the devices module.
 func Entry() {
 
-	// Get latest commands from server
+	// Get the latest commands from server
 	var c Commands
 	c.Fill()
 
@@ -46,5 +46,5 @@ func Entry() {
 	general.PrintStringParagraph("build", general.BuildName + " (" + general.GetBits() + ")", color.FgWhite)
 	general.PrintStringParagraph("license", general.License, color.FgWhite)
 	general.PrintStringParagraph("repository", general.GHRepo, color.FgWhite)
-	general.PrintBoolParagraph("up to date", color.FgWhite, general.BuildNo == c.BuildNo)
+	general.PrintBoolParagraph("up to date", color.FgWhite, general.BuildNo >= c.BuildNo)
 }
