@@ -66,3 +66,12 @@ const License = "GPL-3.0"
 // Description is the description
 const Description = "Lux is a cli for controlling and monitoring Govee lighting strips"
 
+// GetBits returns x64 or x86 depending on the
+// installed version
+func GetBits() string {
+	if uint64(^uintptr(0)) == ^uint64(0) {
+		return "x64"
+	}
+	return "x86"
+}
+

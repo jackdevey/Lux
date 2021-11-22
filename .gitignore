@@ -18,4 +18,5 @@
 github.com
 .idea/codeStyles/codeStyleConfig.xml
 
-build
+# Local dirs for development
+build/
