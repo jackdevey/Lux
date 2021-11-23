@@ -21,9 +21,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package devices
 
 import (
+	"flag"
 	"github.com/bandev/lux/api/general"
 	"github.com/bandev/lux/api/keymanager"
-	"github.com/fatih/color"
+	"os"
 )
 
 // Entry function is the entry point for
@@ -32,9 +33,17 @@ func Entry(args []string) {
 	// If lux is not setup, throw an error
 	if !keymanager.PrintLuxHasAPIKey() { return }
 
-	// Determine the command the user wants
-	var command string
-	if len(args) > 2 { command = args[2] } else { command = "simple" }
+	// Use flags package to parse flags
+	// provided to the sub command
+	devicesCmd := flag.NewFlagSet("devices",flag.ExitOnError)
+	expert := devicesCmd.Bool("expert", false, "show more technical device details")
+	limit := devicesCmd.Int("limit", 0, "add a limit to the number of devices shown")
+
+	// Parse flags & handle errors
+	err := devicesCmd.Parse(os.Args[2:])
+	if err != nil {
+		return
+	}
 
 	// Create a new connection struct
 	var c general.Connection
@@ -45,12 +54,10 @@ func Entry(args []string) {
 	var devices Devices
 	devices.Get(c)
 
-	// Device on the command to run
-	if command == "complex" {
-		devices.ComplexList()
-	}else if command == "simple" {
-		devices.SimpleList()
-	}else {
-		general.PrintHeading("Unknown command '" + command + "' for devices", color.FgRed)
+	// Decide on the command to run
+	if *expert {
+		devices.ComplexList(*limit)
+	} else {
+		devices.SimpleList(*limit)
 	}
 }

@@ -20,7 +20,20 @@
 <p>Lux is a command-line interface for controlling and monitoring Govee lighting strips built in Go. Lux provides it's users with the ability to manage their lighting strips from their desktop computer from any network with an internet connection.</p>
 
 <h2 id="installation">Installation</h2>
-<p>Currently, to install Lux, you must download the source and compile it on your own. After releases are made, we will provide & host various executables.</p>
+<p>We provide a simple installer for each release for Windows but if that's not suitable for you, you can easily compile Lux directly from source. </p>
+<p>You can get the latest copy of Lux from our <a href="https://github.com/BanDev/Lux/releases">GitHub releases</a>, or via <a href="https://docs.microsoft.com/en-us/windows/package-manager/winget/">Winget</a></p>
+
+<pre>
+winget install BanDev.Lux
+</pre>
+
+<blockquote>If you choose to self compile, you will need to add the path to `lux.exe` to your `Path` environment variables in order for Lux to be detected as a command in PowerShell & CMD.</blockquote>
+
+<p>If you're already using a terminal, restart it so that it can register the changes to the environment variables. Then, run the following command to begin setting up your instance of Lux.</p>
+
+<pre>
+lux setup
+</pre>
 
 <h2 id="commands">Commands</h2>
 <ul id='EDTCMDS'><li><code>lux devices</code><p>Lists the devices registered on the user's account</p></li><li><code>lux query 0</code><p>Returns data about the state of a device</p></li><li><code>lux turn 0 on</code><p>Turn a device on or off</p></li><li><code>lux brightness 0 100</code><p>Alter the brightness of a device</p></li><li><code>lux color 0 #0067f4</code><p>Alter the color of a device</p></li><li><code>lux setup</code><p>Connect Lux to your Govee account using your API Key</p></li><li><code>lux help</code><p>Lists a list of commands and information about the CLI</p></li></ul>
