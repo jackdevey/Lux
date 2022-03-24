@@ -3,7 +3,7 @@ module github.com/bandev/lux
 go 1.17
 
 require (
-	github.com/AlecAivazis/survey/v2 v2.3.2
+	github.com/AlecAivazis/survey/v2 v2.3.4
 	github.com/buger/jsonparser v1.1.1
 	github.com/cli/browser v1.1.0
 	github.com/fatih/color v1.13.0
