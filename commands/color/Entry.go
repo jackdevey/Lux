@@ -25,6 +25,7 @@ import (
 	"github.com/bandev/lux/api/general"
 	"github.com/bandev/lux/api/keymanager"
 	"github.com/fatih/color"
+	"regexp"
 	"strconv"
 	"strings"
 )
@@ -38,10 +39,10 @@ func Entry(args []string) {
 
 	// Check a device id is present
 	if len(args) <= 2 {
-		general.PrintHeading("No device id provided. E.g. lux color 0 #0067f4", color.FgRed)
+		general.PrintHeading("No device id provided. E.g. lux color 0 0067f4", color.FgRed)
 		return
 	}else if len(args) <= 3 {
-		general.PrintHeading("Not enough arguments required. E.g. lux color 0 #0067f4", color.FgRed)
+		general.PrintHeading("Not enough arguments required. E.g. lux color 0 0067f4", color.FgRed)
 		return
 	}
 
@@ -53,14 +54,21 @@ func Entry(args []string) {
 	// Check for hexadecimal colour codes
 	var hex = args[3]
 	var colour ControlCmdColor
-	if strings.HasPrefix(hex, "#") && len(hex) == 7 {
+
+	// Remove # if it was added
+	hex = strings.ReplaceAll(hex, "#", "")
+
+	// Check the colour code is valid
+	var validHex, _ = regexp.MatchString("^([A-Fa-f0-9]{6})$", hex)
+
+	if validHex {
 		// Parse hexadecimal colours into rgb
 		// values
-		colour.R, _ = strconv.ParseInt(hex[1:3], 16, 64)
-		colour.G, _ = strconv.ParseInt(hex[3:5], 16, 64)
-		colour.B, _ = strconv.ParseInt(hex[5:7], 16, 64)
+		colour.R, _ = strconv.ParseInt(hex[0:2], 16, 64)
+		colour.G, _ = strconv.ParseInt(hex[2:4], 16, 64)
+		colour.B, _ = strconv.ParseInt(hex[4:6], 16, 64)
 	}else {
-		general.PrintHeading("No hexadecimal colour code provided. E.g. lux color 0 #0067f4", color.FgRed)
+		general.PrintHeading(hex + " is not a valid colour code. E.g. lux color 0 0067f4", color.FgRed)
 		return
 	}
 
@@ -73,8 +81,8 @@ func Entry(args []string) {
 		response.Fill(control.Send(d, c, colour))
 
 		// Output data afterwards
-		general.PrintHeading("COLOR " + strconv.Itoa(i) + " " + strings.ToUpper(args[3]), color.FgWhite)
-		general.PrintStringParagraph("colour", args[3], color.FgWhite)
+		general.PrintHeading("COLOR " + strconv.Itoa(i) + " #" + strings.ToUpper(hex), color.FgWhite)
+		general.PrintStringParagraph("colour", "#" + hex, color.FgWhite)
 		general.PrintStringParagraph("transaction", response.Message, color.FgWhite)
 	}
 }
