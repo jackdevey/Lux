@@ -1,5 +1,5 @@
 #define AppName "Lux"
-#define Version "1.1.0"
+#define Version "1.1.1"
 #define Publisher "BanDev"
 #define URL "https://bandev.uk/lux"
 #define ExeName "lux.exe"

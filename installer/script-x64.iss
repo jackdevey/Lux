@@ -1,12 +1,12 @@
 #define AppName "Lux"
-#define Version "1.1.0"
+#define Version "1.1.1"
 #define Publisher "BanDev"
 #define URL "https://bandev.uk/lux"
 #define ExeName "lux.exe"
 
 [Setup]
 AppId={{E17378AA-71AA-4EFC-8B09-B9A18F395B2F}
-AppName={#Name}
+AppName={#AppName}
 AppVersion={#Version}
 AppPublisher={#Publisher}
 SetupIconFile=src/lux.ico
