@@ -55,6 +55,9 @@ func Entry(args []string) {
 	var hex = args[3]
 	var colour ControlCmdColor
 
+	// Remove # if it was added
+	hex = strings.ReplaceAll(hex, "#", "")
+
 	// Check the colour code is valid
 	var validHex, _ = regexp.MatchString("^([A-Fa-f0-9]{6})$", hex)
 
@@ -78,8 +81,8 @@ func Entry(args []string) {
 		response.Fill(control.Send(d, c, colour))
 
 		// Output data afterwards
-		general.PrintHeading("COLOR " + strconv.Itoa(i) + " #" + strings.ToUpper(args[3]), color.FgWhite)
-		general.PrintStringParagraph("colour", "#" + args[3], color.FgWhite)
+		general.PrintHeading("COLOR " + strconv.Itoa(i) + " #" + strings.ToUpper(hex), color.FgWhite)
+		general.PrintStringParagraph("colour", "#" + hex, color.FgWhite)
 		general.PrintStringParagraph("transaction", response.Message, color.FgWhite)
 	}
 }
