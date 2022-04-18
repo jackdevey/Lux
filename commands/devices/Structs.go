@@ -1,7 +1,7 @@
 /**
 
 Lux
-Copyright (C) 2021  BanDev
+Copyright (C) 2022  BanDev
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -85,9 +85,9 @@ func (d *Devices) SimpleList(limit int) {
 	for i := 0; i < iterations; i++ {
 		var device = d.Data.Devices[i]
 		general.PrintHeading("DEVICE " + strconv.Itoa(i), color.FgWhite)
-		general.PrintStringParagraph("Name:", device.Name, color.FgWhite)
-		general.PrintStringParagraph("Model:", device.Model, color.FgWhite)
-		general.PrintBoolParagraph("Controllable: ", color.FgWhite, device.Controllable)
+		general.PrintStringParagraph("name", device.Name, color.FgWhite)
+		general.PrintStringParagraph("model", device.Model, color.FgWhite)
+		general.PrintBoolParagraph("controllable", color.FgWhite, device.Controllable)
 	}
 }
 
@@ -109,13 +109,13 @@ func (d *Devices) ComplexList(limit int) {
 	for i := 0; i < iterations; i++ {
 		var device = d.Data.Devices[i]
 		general.PrintHeading("DEVICE " + strconv.Itoa(i), color.FgWhite)
-		general.PrintStringParagraph("MAC Address:", device.MAC, color.FgWhite)
-		general.PrintStringParagraph("Model:", device.Model, color.FgWhite)
-		general.PrintStringParagraph("Name:", device.Name, color.FgWhite)
+		general.PrintStringParagraph("MAC address", device.MAC, color.FgWhite)
+		general.PrintStringParagraph("model", device.Model, color.FgWhite)
+		general.PrintStringParagraph("name", device.Name, color.FgWhite)
 
-		general.PrintBoolParagraph("Controllable: ", color.FgWhite, device.Controllable)
-		general.PrintBoolParagraph("Retrievable: ", color.FgWhite, device.Controllable)
+		general.PrintBoolParagraph("controllable", color.FgWhite, device.Controllable)
+		general.PrintBoolParagraph("retrievable", color.FgWhite, device.Controllable)
 
-		general.PrintStringParagraph("Commands:", strings.Join(device.Commands, ", "), color.FgWhite)
+		general.PrintStringParagraph("commands", strings.Join(device.Commands, ", "), color.FgWhite)
 	}
 }
