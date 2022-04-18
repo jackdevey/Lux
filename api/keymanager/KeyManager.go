@@ -1,7 +1,7 @@
 /**
 
 Lux
-Copyright (C) 2021  BanDev
+Copyright (C) 2022  BanDev
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ func (k *KeyStore) Extract() {
 }
 
 // LuxHasAPIKey uses the KeyStore class to
-// check if the software is setup
+// check if the software is set up
 func LuxHasAPIKey() bool {
 	var keymngr KeyStore
 	keymngr.Extract()
@@ -76,7 +76,7 @@ func LuxHasAPIKey() bool {
 // print an error if the user has no api key.
 func PrintLuxHasAPIKey() bool {
 	if !LuxHasAPIKey() {
-		general.PrintError("Lux is not setup! Please run lux setup to add your API Key")
+		general.PrintError("Lux is not set up! Please run lux setup to add your API Key")
 		return false
 	}
 	return true
