@@ -1,50 +1,38 @@
-<div align="center">
- <img src=".github/bandev-lux.svg" height="150" align="center" />
- <br>
- <a>
-  <img src="https://bandev.uk/api/badges/app-promise.svg"/>
-  <a href="https://www.codacy.com/gh/BanDev/Lux/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=BanDev/Lux&amp;utm_campaign=Badge_Grade" target="_blank">
-    <img src="https://app.codacy.com/project/badge/Grade/6d8d30cf27224b9b9fa7368d605673f8"/>
-  </a>
-  <a href="https://github.com/BanDev/Lux/blob/main/LICENSE.md" target="_blank">
-   <img src="https://img.shields.io/github/license/bandev/lux"/>
-  </a>
-  <img src="https://img.shields.io/github/repo-size/bandev/lux"/>
-  <a href="https://www.buymeacoffee.com/bandev" target="_blank">
-   <img src="https://img.shields.io/badge/donate-%C2%A35-orange" >
-  </a>
- </a>
-</div>
+# 🚨Lux
+Lux is a command-line interface for controlling and monitoring Govee lighting strips built in Go. Lux provides it's users with the ability to manage their lighting strips from their desktop computer from any network with an internet connection
 
-<h2 id="what">What is Lux?</h2>
-<p>Lux is a command-line interface for controlling and monitoring Govee lighting strips built in Go. Lux provides it's users with the ability to manage their lighting strips from their desktop computer from any network with an internet connection.</p>
+## Installation
+We provide a simple installer for each release for Windows but if that's not suitable for you, you can easily compile Lux directly from source.
+You can get the latest copy of Lux from our [GitHub releases](https://github.com/BanDev/Lux/releases), or via [winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/)
 
-<h2 id="installation">Installation</h2>
-<p>We provide a simple installer for each release for Windows but if that's not suitable for you, you can easily compile Lux directly from source. </p>
-<p>You can get the latest copy of Lux from our <a href="https://github.com/BanDev/Lux/releases">GitHub releases</a>, or via <a href="https://docs.microsoft.com/en-us/windows/package-manager/winget/">Winget</a></p>
-
-<pre>
+```shell
 winget install BanDev.Lux
-</pre>
+```
 
-<blockquote>If you choose to self compile, you will need to add the path to `lux.exe` to your `Path` environment variables in order for Lux to be detected as a command in PowerShell & CMD.</blockquote>
+> If you choose to self compile, you will need to add the path to `lux.exe` to your `Path` environment variables in order for Lux to be detected as a command in PowerShell & CMD
 
-<p>If you're already using a terminal, restart it so that it can register the changes to the environment variables. Then, run the following command to begin setting up your instance of Lux.</p>
+If you're already using a terminal, restart it so that it can register the changes to the environment variables. Then, run the following command to begin setting up your instance of Lux
 
-<pre>
+```shell
 lux setup
-</pre>
+```
 
-<h2 id="commands">Commands</h2>
-<ul id='EDTCMDS'><li><code>lux devices</code><p>Lists the devices registered on the user's account</p></li><li><code>lux query 0</code><p>Returns data about the state of a device</p></li><li><code>lux turn 0 on</code><p>Turn a device on or off</p></li><li><code>lux brightness 0 100</code><p>Alter the brightness of a device</p></li><li><code>lux color 0 0067f4</code><p>Alter the color of a device</p></li><li><code>lux setup</code><p>Connect Lux to your Govee account using your API Key</p></li><li><code>lux help</code><p>Lists a list of commands and information about the CLI</p></li></ul>
+## Commands
+* `lux devices` Lists the devices registered on the user's account
+* `lux query $id` Returns data about the state of a device
+* `lux turn $id on` Turn a device on or off
+* `lux turn $id $perc` Alter the brightness of a device
+* `lux color $id $color` Alter the color of a device
+* `lux setup` Connect Lux to your Govee account using your API Key
+* `lux help` Lists a list of commands and information about the CLI
 
-<h2 id="contributing">Contributing</h2>
-<p>Looking to contribute to Lux? That&#39;s great! There are a couple of ways to help out. Translations, bug reports and pull requests are all greatly appreciated. Please refer to our <a href="https://github.com/BanDev/Lux/blob/main/CONTRIBUTING.md">contributing guidelines</a> to get started.</p>
+## Contributing
+Looking to contribute to Lux? That's great! There are a couple of ways to help out. Translations, bug reports and pull requests are all greatly appreciated. Please refer to the [contributing guidelines](https://github.com/BanDev/Lux/blob/main/CONTRIBUTING.md) to get started
 
-<h2 id="license">License</h2>
-<pre>
+## License
+```
 Lux
-Copyright © 2022 BanDev
+Copyright © 2022 Jack Devey
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -58,6 +46,4 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>
-</pre>
-
- 
+```
