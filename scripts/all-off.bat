@@ -1,0 +1,1 @@
+lux turn @a off
