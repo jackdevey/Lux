@@ -51,20 +51,22 @@ type Data struct {
 // node. The struct contains information about
 // the user's device.
 type Device struct {
-	MAC string `json:"device"`
-	Model string `json:"model"`
-	Name string `json:"deviceName"`
-	Controllable bool `json:"controllable"`
-	Retrievable bool `json:"retrievable"`
-	Commands []string `json:"supportCmds"`
+	MAC          string   `json:"device"`
+	Model        string   `json:"model"`
+	Name         string   `json:"deviceName"`
+	Controllable bool     `json:"controllable"`
+	Retrievable  bool     `json:"retrievable"`
+	Commands     []string `json:"supportCmds"`
 }
 
 // Get Fills an empty Devices object with information
 // provided from Govee's API using the Connection
 // that must be passed as a parameter.
-func (d *Devices) Get(c general.Connection) {
+func (d *Devices) Get(c *general.Connection) {
 	err := json.Unmarshal(c.Get("v1/devices"), &d)
-	if err != nil { println("Error while parsing devices object") }
+	if err != nil {
+		println("Error while parsing devices object")
+	}
 }
 
 // SimpleList prints a simple list of Device's to
@@ -84,7 +86,7 @@ func (d *Devices) SimpleList(limit int) {
 
 	for i := 0; i < iterations; i++ {
 		var device = d.Data.Devices[i]
-		general.PrintHeading("DEVICE " + strconv.Itoa(i), color.FgWhite)
+		general.PrintHeading("DEVICE "+strconv.Itoa(i), color.FgWhite)
 		general.PrintStringParagraph("name", device.Name, color.FgWhite)
 		general.PrintStringParagraph("model", device.Model, color.FgWhite)
 		general.PrintBoolParagraph("controllable", color.FgWhite, device.Controllable)
@@ -108,7 +110,7 @@ func (d *Devices) ComplexList(limit int) {
 
 	for i := 0; i < iterations; i++ {
 		var device = d.Data.Devices[i]
-		general.PrintHeading("DEVICE " + strconv.Itoa(i), color.FgWhite)
+		general.PrintHeading("DEVICE "+strconv.Itoa(i), color.FgWhite)
 		general.PrintStringParagraph("MAC address", device.MAC, color.FgWhite)
 		general.PrintStringParagraph("model", device.Model, color.FgWhite)
 		general.PrintStringParagraph("name", device.Name, color.FgWhite)

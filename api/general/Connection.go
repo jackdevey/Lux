@@ -22,6 +22,7 @@ package general
 
 import (
 	"bytes"
+	"github.com/bandev/lux/api/keymanager"
 	"net/http"
 )
 
@@ -31,7 +32,7 @@ import (
 type Connection struct {
 	http http.Client
 	Key  string
-	Base  string
+	Base string
 }
 
 // Get makes a GET request to the API server
@@ -39,21 +40,21 @@ type Connection struct {
 // Usually a JSON object is returned in
 // byte array form to help with parsing.
 func (c Connection) Get(path string) []byte {
-	request, _ := http.NewRequest("GET", c.Base + path, nil)
+	request, _ := http.NewRequest("GET", c.Base+path, nil)
 	request.Header.Set("Govee-API-Key", c.Key)
 	response, err := c.http.Do(request)
 
 	if err != nil {
 		println("Error making request")
 		return []byte("")
-	}else if response != nil {
+	} else if response != nil {
 		buf := new(bytes.Buffer)
 		_, err := buf.ReadFrom(response.Body)
 		if err != nil {
 			return nil
 		}
 		return []byte(buf.String())
-	}else {
+	} else {
 		println("Something bad happened :(")
 		return []byte("")
 	}
@@ -62,7 +63,7 @@ func (c Connection) Get(path string) []byte {
 // Put uses the PUT request to send
 // data to the API.
 func (c Connection) Put(path string, body []byte) []byte {
-	request, _ := http.NewRequest("PUT", c.Base + path, bytes.NewBuffer(body))
+	request, _ := http.NewRequest("PUT", c.Base+path, bytes.NewBuffer(body))
 	request.Header.Set("Govee-API-Key", c.Key)
 	request.Header.Set("Content-Type", "application/json")
 	response, err := c.http.Do(request)
@@ -70,14 +71,14 @@ func (c Connection) Put(path string, body []byte) []byte {
 	if err != nil {
 		println("Error making request")
 		return []byte("")
-	}else if response != nil {
+	} else if response != nil {
 		buf := new(bytes.Buffer)
 		_, err := buf.ReadFrom(response.Body)
 		if err != nil {
 			return nil
 		}
 		return []byte(buf.String())
-	}else {
+	} else {
 		println("Something bad happened :(")
 		return []byte("")
 	}
@@ -87,8 +88,15 @@ func (c Connection) Put(path string, body []byte) []byte {
 // to verify that the API Key provided
 // is valid.
 func (c Connection) TestKey() bool {
-	request, _ := http.NewRequest("GET", c.Base + "v1/devices", nil)
+	request, _ := http.NewRequest("GET", c.Base+"v1/devices", nil)
 	request.Header.Set("Govee-API-Key", c.Key)
 	response, _ := c.http.Do(request)
 	return !(response.StatusCode == 401)
+}
+
+func NewGoveeConnection() *Connection {
+	var c Connection
+	c.Key = keymanager.GetAPIKey()
+	c.Base = "https://developer-api.govee.com/"
+	return &c
 }

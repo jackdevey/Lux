@@ -21,9 +21,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package setup
 
 import (
+	"fmt"
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/bandev/lux/api/general"
 	"github.com/bandev/lux/api/keymanager"
+	"github.com/cli/browser"
 )
 
 // HasAPIKey is used to check if the user has
@@ -51,9 +53,9 @@ func HasAPIKey() bool {
 func GetAPIKey() string {
 	var question = []*survey.Question{
 		{
-			Name: "GetAPIKey",
-			Prompt: &survey.Input{Message: "Enter Govee Api Key"},
-			Validate: survey.Required,
+			Name:      "GetAPIKey",
+			Prompt:    &survey.Input{Message: "Enter Govee Api Key"},
+			Validate:  survey.Required,
 			Transform: survey.Title,
 		},
 	}
@@ -70,15 +72,23 @@ func GetAPIKey() string {
 func AskForKey() {
 	key := GetAPIKey()
 	c := general.Connection{
-		Key: key,
+		Key:  key,
 		Base: "https://developer-api.govee.com/",
 	}
 	if c.TestKey() {
-		keymngr := keymanager.KeyStore{Key: key}
-		keymngr.Store()
-	}else if key != "" {
+		key := keymanager.ApiKey{Key: key}
+		key.Store()
+	} else if key != "" {
 		general.PrintError("Invalid API Key")
 		AskForKey()
 	}
 }
 
+// ShowCreateKey redirects the user
+// to the setting up lux guide on the
+// GitHub repository.
+func ShowCreateKey() {
+	general.PrintNeutral("Press enter to open Api Key creation guide in browser...")
+	_, _ = fmt.Scanln()
+	_ = browser.OpenURL("https://github.com/jackdevey/lux/wiki/Getting-Started#setting-up-lux")
+}

@@ -31,11 +31,13 @@ import (
 // the devices module.
 func Entry(args []string) {
 	// If lux is not setup, throw an error
-	if !keymanager.PrintLuxHasAPIKey() { return }
+	if !keymanager.PrintLuxHasAPIKey() {
+		return
+	}
 
 	// Use flags package to parse flags
 	// provided to the sub command
-	devicesCmd := flag.NewFlagSet("devices",flag.ExitOnError)
+	devicesCmd := flag.NewFlagSet("devices", flag.ExitOnError)
 	expert := devicesCmd.Bool("expert", false, "show more technical device details")
 	limit := devicesCmd.Int("limit", 0, "add a limit to the number of devices shown")
 
@@ -52,7 +54,7 @@ func Entry(args []string) {
 
 	// Get a list of devices from Govee
 	var devices Devices
-	devices.Get(c)
+	devices.Get(&c)
 
 	// Decide on the command to run
 	if *expert {

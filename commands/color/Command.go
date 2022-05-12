@@ -16,34 +16,25 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package setup
+package color
 
 import (
-	"github.com/bandev/lux/api/general"
-	"github.com/bandev/lux/api/keymanager"
 	"github.com/spf13/cobra"
 )
 
-// Setup guides the user through inputting
-// their Govee API key, to link their account
-// to the CLI.
-var Setup = &cobra.Command{
-	Use:   "setup",
-	Short: "Link Lux to your Govee account",
-	Run: func(cmd *cobra.Command, args []string) {
-
-		// Is Lux already setup?
-		if keymanager.HasKey() {
-			general.PrintWarning("Lux is already setup with a Govee API Key")
-			return
-		}
-		// Ask for API key if user has one
-		// or show instructions to create one
-		if HasAPIKey() {
-			AskForKey()
-		} else {
-			ShowCreateKey()
-		}
-
-	},
+// Command returns a pointer to the Color
+// command, allowing the user to alter the
+// color of their devices
+func Command() *cobra.Command {
+	// Set all flags
+	Color.Flags().IntP("device", "d", 0, "the id of the Govee device")
+	Color.Flags().BoolP("all", "a", false, "run the command on all devices")
+	Color.Flags().StringP("color", "c", "ffffff", "the color to change the device to")
+	// Make color flag required
+	_ = Color.MarkFlagRequired("color")
+	// Either all or device flag must be present
+	// but a check for this cannot be implemented
+	// here and thus, must be implemented through
+	// code.
+	return Color
 }

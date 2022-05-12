@@ -28,12 +28,11 @@ import (
 	"strconv"
 )
 
-
 // GetDevicesFrom will return an array of devices
 // from Govee
 func GetDevicesFrom(arg string, c general.Connection) []devices.Device {
 	var ds devices.Devices
-	ds.Get(c)
+	ds.Get(&c)
 	if arg == "@a" {
 		return ds.Data.Devices
 	}
@@ -43,4 +42,16 @@ func GetDevicesFrom(arg string, c general.Connection) []devices.Device {
 		os.Exit(1)
 	}
 	return []devices.Device{ds.Data.Devices[dID]}
+}
+
+func GetAllDevices(c *general.Connection) []devices.Device {
+	var ds devices.Devices
+	ds.Get(c)
+	return ds.Data.Devices
+}
+
+func GetDevice(id int, c *general.Connection) devices.Device {
+	var ds devices.Devices
+	ds.Get(c)
+	return ds.Data.Devices[id]
 }
