@@ -18,22 +18,23 @@
 
 package color
 
-import (
-	"github.com/spf13/cobra"
-)
+import "errors"
 
-// Command returns a pointer to the Color
-// command, allowing the user to alter the
-// color of their devices
-func Command() *cobra.Command {
-	// Set all flags
-	Color.Flags().IntP("device", "d", 0, "the id of the Govee device")
-	Color.Flags().BoolP("all", "a", false, "run the command on all devices")
-	Color.Flags().StringP("hex", "x", "ffffff", "the hexadecimal color code to change the device to")
-	Color.Flags().StringP("color", "c", "white", "the color to change the device to")
-	// Either all or device flag must be present
-	// but a check for this cannot be implemented
-	// here and thus, must be implemented through
-	// code.
-	return Color
+func shortcutColorLookup(input string) (string, error) {
+	switch input {
+	// Core colors
+	case "white": return "ffffff", nil
+	case "red": return "ff0000", nil
+	case "green": return "00ff00", nil
+	case "blue": return "0000ff", nil
+	// Other colors
+	case "pink": return "ff69b4", nil
+	case "orange": return "ffa500", nil
+	case "yellow": return "ffff00", nil
+	case "purple": return "800080", nil
+	case "teal": return "008080", nil
+	case "brown": return "8b4513", nil
+	case "gray": return "808080", nil
+	default: return "", errors.New("unknown input")
+	}
 }

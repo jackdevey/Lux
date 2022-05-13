@@ -31,7 +31,6 @@ var Setup = &cobra.Command{
 	Use:   "setup",
 	Short: "Link Lux to your Govee account",
 	Run: func(cmd *cobra.Command, args []string) {
-
 		// Is Lux already setup?
 		if keymanager.HasKey() {
 			general.PrintWarning("Lux is already setup with a Govee API Key")
@@ -44,6 +43,5 @@ var Setup = &cobra.Command{
 		} else {
 			ShowCreateKey()
 		}
-
 	},
 }

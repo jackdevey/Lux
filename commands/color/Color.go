@@ -49,17 +49,32 @@ var Color = &cobra.Command{
 		if !cmd.Flags().Changed("device") && !all {
 			return errors.New("no device id provided")
 		}
-		// Get color from flags
-		var colorStr, _ = cmd.Flags().GetString("color")
-		var validColor, _ = regexp.MatchString("^([A-Fa-f0-9]{6})$", colorStr)
-		if !validColor {
-			return errors.New("color code should be in hexadecimal format, e.g. ffffff or 0067f4")
+		// Create empty color object & hexStr
+		var colorObj ControlCmdColor
+		var hexStr string
+		// If color shortcut provided, parse it here
+		// or parse the color code
+		if cmd.Flags().Changed("color") {
+			// Get the corresponding color code
+			var input, _ = cmd.Flags().GetString("color")
+			var hex, err = shortcutColorLookup(input)
+			if err != nil {
+				return errors.New("unknown color value " + input)
+			} else {
+				hexStr = hex
+			}
+		} else {
+			// Get hex code from input
+			hexStr, _ = cmd.Flags().GetString("hex")
+			var validColor, _ = regexp.MatchString("^([A-Fa-f0-9]{6})$", hexStr)
+			if !validColor {
+				return errors.New("color code should be in hexadecimal format, e.g. ffffff or 0067f4")
+			}
 		}
 		// Parse color into format for Govee
-		var colorObj ControlCmdColor
-		colorObj.R, _ = strconv.ParseInt(colorStr[0:2], 16, 64)
-		colorObj.G, _ = strconv.ParseInt(colorStr[2:4], 16, 64)
-		colorObj.B, _ = strconv.ParseInt(colorStr[4:6], 16, 64)
+		colorObj.R, _ = strconv.ParseInt(hexStr[0:2], 16, 64)
+		colorObj.G, _ = strconv.ParseInt(hexStr[2:4], 16, 64)
+		colorObj.B, _ = strconv.ParseInt(hexStr[4:6], 16, 64)
 		// If all, then loop through all devices
 		// otherwise do just singular
 		var array []devices.Device
@@ -77,7 +92,7 @@ var Color = &cobra.Command{
 			response.Fill(control.Send(d, connection, colorObj))
 			// Output data afterwards
 			general.PrintHeading("Color "+strconv.Itoa(i), color.FgWhite)
-			general.PrintStringParagraph("color", "#"+colorStr, color.FgWhite)
+			general.PrintStringParagraph("color", "#"+hexStr, color.FgWhite)
 			general.PrintStringParagraph("transaction", response.Message, color.FgWhite)
 		}
 		return nil
