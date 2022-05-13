@@ -22,8 +22,8 @@ package turn
 
 import (
 	"encoding/json"
+	"github.com/bandev/lux/api/goveedevices"
 	"github.com/bandev/lux/api/general"
-	"github.com/bandev/lux/commands/devices"
 )
 
 // Control struct manages the control
@@ -43,7 +43,7 @@ type ControlCmd struct {
 
 // Send sends all the data to govee to turn a
 // device on or off.
-func (c *Control) Send (d devices.Device, conn general.Connection, on bool) []byte {
+func (c *Control) Send (d goveedevices.Device, conn general.Connection, on bool) []byte {
 	c.Device = d.MAC
 	c.Model = d.Model
 	c.Cmd.Name = "turn"

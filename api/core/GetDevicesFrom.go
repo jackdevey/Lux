@@ -22,7 +22,7 @@ package core
 
 import (
 	"github.com/bandev/lux/api/general"
-	"github.com/bandev/lux/commands/devices"
+	"github.com/bandev/lux/api/goveedevices"
 	"github.com/fatih/color"
 	"os"
 	"strconv"
@@ -30,8 +30,8 @@ import (
 
 // GetDevicesFrom will return an array of devices
 // from Govee
-func GetDevicesFrom(arg string, c general.Connection) []devices.Device {
-	var ds devices.Devices
+func GetDevicesFrom(arg string, c general.Connection) []goveedevices.Device {
+	var ds goveedevices.Devices
 	ds.Get(&c)
 	if arg == "@a" {
 		return ds.Data.Devices
@@ -41,17 +41,17 @@ func GetDevicesFrom(arg string, c general.Connection) []devices.Device {
 		general.PrintHeading("Device id provided is invalid", color.FgRed)
 		os.Exit(1)
 	}
-	return []devices.Device{ds.Data.Devices[dID]}
+	return []goveedevices.Device{ds.Data.Devices[dID]}
 }
 
-func GetAllDevices(c *general.Connection) []devices.Device {
-	var ds devices.Devices
+func GetAllDevices(c *general.Connection) []goveedevices.Device {
+	var ds goveedevices.Devices
 	ds.Get(c)
 	return ds.Data.Devices
 }
 
-func GetDevice(id int, c *general.Connection) devices.Device {
-	var ds devices.Devices
+func GetDevice(id int, c *general.Connection) goveedevices.Device {
+	var ds goveedevices.Devices
 	ds.Get(c)
 	return ds.Data.Devices[id]
 }

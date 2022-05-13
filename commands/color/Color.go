@@ -22,8 +22,8 @@ import (
 	"errors"
 	"github.com/bandev/lux/api/core"
 	"github.com/bandev/lux/api/general"
+	"github.com/bandev/lux/api/goveedevices"
 	"github.com/bandev/lux/api/keymanager"
-	"github.com/bandev/lux/commands/devices"
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 	"regexp"
@@ -38,7 +38,7 @@ var Color = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		// If lux is not setup, throw an error
 		if !keymanager.PrintLuxHasAPIKey() {
-			return nil
+			return errors.New("not setup with Govee API key")
 		}
 		// Setup connection
 		var connection = general.NewGoveeConnection()
@@ -77,11 +77,11 @@ var Color = &cobra.Command{
 		colorObj.B, _ = strconv.ParseInt(hexStr[4:6], 16, 64)
 		// If all, then loop through all devices
 		// otherwise do just singular
-		var array []devices.Device
+		var array []goveedevices.Device
 		if all {
 			array = core.GetAllDevices(connection)
 		} else {
-			array = []devices.Device{core.GetDevice(device, connection)}
+			array = []goveedevices.Device{core.GetDevice(device, connection)}
 		}
 		// Iterate through the provided devices
 		for i, d := range array {

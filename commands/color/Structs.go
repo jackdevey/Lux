@@ -20,8 +20,8 @@ package color
 
 import (
 	"encoding/json"
+	"github.com/bandev/lux/api/goveedevices"
 	"github.com/bandev/lux/api/general"
-	"github.com/bandev/lux/commands/devices"
 )
 
 // Control struct manages the control
@@ -50,7 +50,7 @@ type ControlCmdColor struct {
 
 // Send sends all the data to govee to set
 // the value of the colour
-func (c *Control) Send(d devices.Device, conn *general.Connection, color ControlCmdColor) []byte {
+func (c *Control) Send(d goveedevices.Device, conn *general.Connection, color ControlCmdColor) []byte {
 	c.Device = d.MAC
 	c.Model = d.Model
 	c.Cmd.Name = "color"

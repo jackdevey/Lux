@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package devices
+package goveedevices
 
 import (
 	"encoding/json"
@@ -86,7 +86,7 @@ func (d *Devices) SimpleList(limit int) {
 
 	for i := 0; i < iterations; i++ {
 		var device = d.Data.Devices[i]
-		general.PrintHeading("DEVICE "+strconv.Itoa(i), color.FgWhite)
+		general.PrintHeading("Device "+strconv.Itoa(i), color.FgWhite)
 		general.PrintStringParagraph("name", device.Name, color.FgWhite)
 		general.PrintStringParagraph("model", device.Model, color.FgWhite)
 		general.PrintBoolParagraph("controllable", color.FgWhite, device.Controllable)
@@ -110,7 +110,7 @@ func (d *Devices) ComplexList(limit int) {
 
 	for i := 0; i < iterations; i++ {
 		var device = d.Data.Devices[i]
-		general.PrintHeading("DEVICE "+strconv.Itoa(i), color.FgWhite)
+		general.PrintHeading("Device "+strconv.Itoa(i), color.FgWhite)
 		general.PrintStringParagraph("MAC address", device.MAC, color.FgWhite)
 		general.PrintStringParagraph("model", device.Model, color.FgWhite)
 		general.PrintStringParagraph("name", device.Name, color.FgWhite)
