@@ -25,6 +25,7 @@ import (
 	"github.com/bandev/lux/commands/devices"
 	"github.com/bandev/lux/commands/misc"
 	"github.com/bandev/lux/commands/setup"
+	"github.com/bandev/lux/commands/turn"
 	"github.com/spf13/cobra"
 )
 
@@ -42,6 +43,7 @@ func main() {
 	root.AddCommand(setup.Setup)
 	root.AddCommand(color.Command())
 	root.AddCommand(devices.Command())
+	root.AddCommand(turn.Command())
 
 	root.Execute()
 }
