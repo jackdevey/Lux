@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package main
 
 import (
+	"github.com/bandev/lux/commands/brightness"
 	"github.com/bandev/lux/commands/color"
 	"github.com/bandev/lux/commands/devices"
 	"github.com/bandev/lux/commands/misc"
@@ -44,6 +45,7 @@ func main() {
 	root.AddCommand(color.Command())
 	root.AddCommand(devices.Command())
 	root.AddCommand(turn.Command())
+	root.AddCommand(brightness.Command())
 
 	root.Execute()
 }
