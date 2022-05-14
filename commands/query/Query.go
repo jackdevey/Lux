@@ -57,7 +57,10 @@ var Query = &cobra.Command{
 		if all {
 			array = core.GetAllDevices(connection)
 		} else {
-			array = []goveedevices.Device{core.GetDevice(device, connection)}
+			dev, err := core.GetDevice(device, connection)
+			// If err, pass it on
+			if err != nil { return err }
+			array = []goveedevices.Device{dev}
 		}
 		// Iterate through the provided devices
 		for i, d := range array {

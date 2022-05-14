@@ -34,20 +34,22 @@ import (
 // main is the command that is first
 // run. It determines where to send the
 // user based on what the arguments are.
+
+// Decide what part of the cli to run
+var root = &cobra.Command{
+	Use: "lux",
+	Short: "Lux is a command-line interface for controlling and monitoring Govee lighting",
+}
+
 func main() {
-	// Decide what part of the cli to run
-
-	var root = &cobra.Command{
-		Use: "lux",
-	}
-
-	root.AddCommand(misc.Version)
-	root.AddCommand(setup.Setup)
+	// Add all commands
 	root.AddCommand(color.Command())
 	root.AddCommand(devices.Command())
 	root.AddCommand(turn.Command())
 	root.AddCommand(brightness.Command())
 	root.AddCommand(query.Command())
-
-	root.Execute()
+	root.AddCommand(misc.Version)
+	root.AddCommand(setup.Setup)
+	// Execute the command
+	_ = root.Execute()
 }

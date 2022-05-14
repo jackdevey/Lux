@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package core
 
 import (
+	"errors"
 	"github.com/bandev/lux/api/general"
 	"github.com/bandev/lux/api/goveedevices"
 	"github.com/fatih/color"
@@ -50,8 +51,12 @@ func GetAllDevices(c *general.Connection) []goveedevices.Device {
 	return ds.Data.Devices
 }
 
-func GetDevice(id int, c *general.Connection) goveedevices.Device {
+func GetDevice(id int, c *general.Connection) (goveedevices.Device, error) {
 	var ds goveedevices.Devices
 	ds.Get(c)
-	return ds.Data.Devices[id]
+	if len(ds.Data.Devices) > id {
+		return ds.Data.Devices[id], nil
+	} else {
+		return goveedevices.Device{}, errors.New("invalid device id")
+	}
 }
