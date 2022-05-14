@@ -21,14 +21,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package query
 
 import (
-	"github.com/bandev/lux/api/goveedevices"
 	"github.com/bandev/lux/api/general"
+	"github.com/bandev/lux/api/goveedevices"
 	"github.com/buger/jsonparser"
 )
 
-// Query is the struct for storing the
+// DeviceQuery is the struct for storing the
 // data returned by Govee.
-type Query struct {
+type DeviceQuery struct {
 	Device     string
 	Model      string
 	Online     bool
@@ -40,7 +40,7 @@ type Query struct {
 // Fill fills a Query struct with
 // the data returned from Govee with
 // the parameter of a Device struct.
-func (q *Query) Fill(c general.Connection, d goveedevices.Device) {
+func (q *DeviceQuery) Fill(c *general.Connection, d goveedevices.Device) {
 	var r = c.Get("v1/devices/state?device=" + d.MAC + "&model=" + d.Model)
 	q.Device, _ = jsonparser.GetString(r, "data", "device")
 	q.Model, _ = jsonparser.GetString(r, "data", "model")

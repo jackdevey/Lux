@@ -25,6 +25,7 @@ import (
 	"github.com/bandev/lux/commands/color"
 	"github.com/bandev/lux/commands/devices"
 	"github.com/bandev/lux/commands/misc"
+	"github.com/bandev/lux/commands/query"
 	"github.com/bandev/lux/commands/setup"
 	"github.com/bandev/lux/commands/turn"
 	"github.com/spf13/cobra"
@@ -46,6 +47,7 @@ func main() {
 	root.AddCommand(devices.Command())
 	root.AddCommand(turn.Command())
 	root.AddCommand(brightness.Command())
+	root.AddCommand(query.Command())
 
 	root.Execute()
 }
