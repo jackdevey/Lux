@@ -21,19 +21,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package core
 
 import (
+	"errors"
 	"github.com/bandev/lux/api/general"
-	"github.com/bandev/lux/commands/devices"
+	"github.com/bandev/lux/api/goveedevices"
 	"github.com/fatih/color"
 	"os"
 	"strconv"
 )
 
-
 // GetDevicesFrom will return an array of devices
 // from Govee
-func GetDevicesFrom(arg string, c general.Connection) []devices.Device {
-	var ds devices.Devices
-	ds.Get(c)
+func GetDevicesFrom(arg string, c general.Connection) []goveedevices.Device {
+	var ds goveedevices.Devices
+	ds.Get(&c)
 	if arg == "@a" {
 		return ds.Data.Devices
 	}
@@ -42,5 +42,21 @@ func GetDevicesFrom(arg string, c general.Connection) []devices.Device {
 		general.PrintHeading("Device id provided is invalid", color.FgRed)
 		os.Exit(1)
 	}
-	return []devices.Device{ds.Data.Devices[dID]}
+	return []goveedevices.Device{ds.Data.Devices[dID]}
+}
+
+func GetAllDevices(c *general.Connection) []goveedevices.Device {
+	var ds goveedevices.Devices
+	ds.Get(c)
+	return ds.Data.Devices
+}
+
+func GetDevice(id int, c *general.Connection) (goveedevices.Device, error) {
+	var ds goveedevices.Devices
+	ds.Get(c)
+	if len(ds.Data.Devices) > id {
+		return ds.Data.Devices[id], nil
+	} else {
+		return goveedevices.Device{}, errors.New("invalid device id")
+	}
 }

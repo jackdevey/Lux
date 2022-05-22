@@ -1,0 +1,10 @@
+<component name="CopyrightManager">
+  <settings default="Jack Devey">
+    <module2copyright>
+      <element module="All" copyright="Jack Devey" />
+    </module2copyright>
+    <LanguageOptions name="Go">
+      <option name="fileTypeOverride" value="3" />
+    </LanguageOptions>
+  </settings>
+</component>

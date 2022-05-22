@@ -22,29 +22,28 @@ package keymanager
 
 import (
 	"encoding/json"
-	"github.com/bandev/lux/api/general"
 	"io/ioutil"
 	"os"
 )
 
-// KeyStore manages the user's
-// API key
-type KeyStore struct {
+// ApiKey stores the user's
+// API key.
+type ApiKey struct {
 	Key string `json:"key"`
 }
 
 // Store the current key to
 // the user's storage
-func (k *KeyStore) Store() {
+func (k *ApiKey) Store() {
 	dir, _ := os.UserHomeDir()
 	path := dir + "\\.config\\lux"
-	if _, err := os.Stat(path); os.IsNotExist(err){
+	if _, err := os.Stat(path); os.IsNotExist(err) {
 		_ = os.MkdirAll(path, os.ModePerm)
 	}
 	var f *os.File
-	if _, err := os.Stat(path+"\\key.json"); os.IsNotExist(err){
-		f, _ = os.Create(path+"\\key.json")
-	}else {
+	if _, err := os.Stat(path + "\\key.json"); os.IsNotExist(err) {
+		f, _ = os.Create(path + "\\key.json")
+	} else {
 		f, _ = os.OpenFile(path+"\\key.json", os.O_CREATE|os.O_WRONLY, 0644)
 	}
 	b, _ := json.Marshal(&k)
@@ -57,26 +56,24 @@ func (k *KeyStore) Store() {
 
 // Extract the key from the user's
 // storage
-func (k *KeyStore) Extract() {
+func (k *ApiKey) Extract() {
 	dir, _ := os.UserHomeDir()
 	path := dir + "\\.config\\lux\\key.json"
 	b, _ := ioutil.ReadFile(path)
 	_ = json.Unmarshal(b, &k)
 }
 
-// LuxHasAPIKey uses the KeyStore class to
-// check if the software is set up
-func LuxHasAPIKey() bool {
-	var keymngr KeyStore
-	keymngr.Extract()
-	return keymngr.Key != ""
+// HasKey check if the software is setup
+func HasKey() bool {
+	return GetAPIKey() != ""
+
 }
 
 // PrintLuxHasAPIKey uses LuxHasAPIKey to
 // print an error if the user has no api key.
+// DOES NOT PRINT IS BUG NEEDS FIX
 func PrintLuxHasAPIKey() bool {
-	if !LuxHasAPIKey() {
-		general.PrintError("Lux is not set up! Please run lux setup to add your API Key")
+	if !HasKey() {
 		return false
 	}
 	return true
@@ -85,8 +82,7 @@ func PrintLuxHasAPIKey() bool {
 // GetAPIKey allows packages to
 // request the api key
 func GetAPIKey() string {
-	var keymngr KeyStore
-	keymngr.Extract()
-	return keymngr.Key
+	var key ApiKey
+	key.Extract()
+	return key.Key
 }
-

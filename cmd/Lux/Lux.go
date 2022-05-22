@@ -21,37 +21,35 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package main
 
 import (
-	"github.com/bandev/lux/api/general"
 	"github.com/bandev/lux/commands/brightness"
 	"github.com/bandev/lux/commands/color"
 	"github.com/bandev/lux/commands/devices"
-	"github.com/bandev/lux/commands/help"
+	"github.com/bandev/lux/commands/misc"
 	"github.com/bandev/lux/commands/query"
 	"github.com/bandev/lux/commands/setup"
 	"github.com/bandev/lux/commands/turn"
-	"os"
+	"github.com/spf13/cobra"
 )
 
 // main is the command that is first
 // run. It determines where to send the
 // user based on what the arguments are.
-func main() {
-	// Decide what part of the cli to run
 
-	// If no argument given, run help
-	if len(os.Args) == 1 { help.Entry(); return }
-
-	// If an arg is present check what was
-	// requested
-	switch os.Args[1] {
-		case "devices": devices.Entry(os.Args)
-		case "query": query.Entry(os.Args)
-		case "turn": turn.Entry(os.Args)
-		case "brightness": brightness.Entry(os.Args)
-		case "color": color.Entry(os.Args)
-		case "setup": setup.Entry()
-		case "help": help.Entry()
-		default: general.PrintError("Unknown command " + os.Args[1])
-	}
+// Decide what part of the cli to run
+var root = &cobra.Command{
+	Use: "lux",
+	Short: "Lux is a command-line interface for controlling and monitoring Govee lighting",
 }
 
+func main() {
+	// Add all commands
+	root.AddCommand(color.Command())
+	root.AddCommand(devices.Command())
+	root.AddCommand(turn.Command())
+	root.AddCommand(brightness.Command())
+	root.AddCommand(query.Command())
+	root.AddCommand(misc.Version)
+	root.AddCommand(setup.Setup)
+	// Execute the command
+	_ = root.Execute()
+}
