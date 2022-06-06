@@ -6,7 +6,7 @@ We provide a simple installer for each release for Windows but if that's not sui
 You can get the latest copy of Lux from our [GitHub releases](https://github.com/BanDev/Lux/releases), or via [winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/)
 
 ```shell
-winget install BanDev.Lux
+winget install JackDevey.Lux
 ```
 
 > If you choose to self compile, you will need to add the path to `lux.exe` to your `Path` environment variables in order for Lux to be detected as a command in PowerShell & CMD
