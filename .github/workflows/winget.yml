@@ -7,7 +7,7 @@ jobs:
   publish:
     runs-on: windows-latest
     steps:
-      - uses: vedantmgoyal2009/vedantmgoyal2009/winget-pkgs-automation/releaser-action@v1.0.0
+      - uses: vedantmgoyal2009/winget-releaser@latest
         with:
           identifier: JackDevey.Lux
           installers-regex: '\.exe$'
