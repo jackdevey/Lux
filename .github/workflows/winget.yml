@@ -10,4 +10,5 @@ jobs:
       - uses: vedantmgoyal2009/winget-releaser@latest
         with:
           identifier: JackDevey.Lux
+          installers-regex: '\.exe$'
           token: ${{ secrets.WINGET_TOKEN }}
