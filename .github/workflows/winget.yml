@@ -7,9 +7,8 @@ jobs:
   publish:
     runs-on: windows-latest
     steps:
-      - uses: vedantmgoyal2009/winget-releaser@latest
+      - uses: vedantmgoyal2009/winget-releaser@v1
         with:
           identifier: JackDevey.Lux
           installers-regex: '\.exe$'
-          delete-previous-version: 'true'
           token: ${{ secrets.WINGET_TOKEN }}
